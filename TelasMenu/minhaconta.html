@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/editarconta.css">
+    <link rel="stylesheet" href="../assets/css/minhaconta.css">
     <link rel="icon" href="../img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Editar Conta - NC Bolos</title>
+    <title>Minha Conta - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -63,8 +63,7 @@
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item"><a href="../TelasMenu/minhaconta.html" class="breadcrumb1">Minha Conta</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Editar Conta</li>
+                <li class="breadcrumb-item active" aria-current="page">Minha Conta</li>
             </ol>
         </nav>
     </div>
@@ -72,7 +71,7 @@
 
     <!-- Início Minha Conta -->
     <div class="novidades">
-        <h1>Editar Conta<img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2 campaign"></h1>
+        <h1>Minha Conta<img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2 campaign"></h1>
     </div>
     <!-- Fim Minha Conta -->
 
@@ -83,35 +82,64 @@
         <h2><br>Nome Usuário</h2>
         <h3>emailusuario@gmail.com</h3>
     </div>
-    <!-- Começo do Container Forms-->
-    <div class="container"> 
-        <form class="forms">
-            <div class="mb-3 ">
-                <label for="exampleInputName1" class="form-label infprimaria"><img src="../img/Icons/edit_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" width="24px" height="24px">&nbsp Editar Nome</label><br>
-                <input type="email" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Nome Usuário">
+    <br>
+    <div class="container quadrado">
+        <div class="row">
+            <div class="col-4 text-center items">
+                <img src="../img/Icons/article_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <p class="descricao my-2">Meus Pedidos</p>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label infprimaria"><img src="../img/Icons/edit_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" width="24px" height="24px">&nbsp Editar E-mail</label><br>
-                <input type="email" id="exampleInputEmail1" placeholder="emailusuario@gmail.com">
+            <div class="col-4 text-center items">
+                <img src="../img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png">
+                <p class="descricao my-2">Favoritos</p>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label infprimaria">Nova Senha</label><br>
-                <input type="email" id="exampleInputEmail1">
+            <div class="col-4 text-center items">
+                <img src="../img/Icons/notifications_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <p class="descricao my-2">Notificações</p>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label infprimaria">Confirmar Nova Senha</label><br>
-                <input type="email" id="exampleInputEmail1">
+        </div>
+    </div>
+    <br><br>
+    <a href="./editarconta.html" class="text1"><div class="container retangulo">
+        <div class="row">
+            <div class="col-6 text-start text-dark text-dark">
+                <img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Meu Perfil
             </div>
-            <br>
-            <div class="botoes">
-                <a href="../index.html"><button type="button" class="btnvoltar">VOLTAR</button></a>
-                <a href="#"><button type="button" class="btnconfirmar">SALVAR</button></a>
+            <div class="col-6 text-end">
+                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
             </div>
-
-        </form>
-    </div> 
-    <!-- Fim do Container Forms -->
-    
+        </div>
+    </div></a>
+    <a href="./configuracoes.html" class="text1"><div class="container retangulo">
+        <div class="row">
+            <div class="col-6 text-start text-dark">
+                <img src="../img/Icons/settings_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Configurações
+            </div>
+            <div class="col-6 text-end">
+                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+            </div>
+        </div>
+    </div></a>
+    <a href="#" class="text1"><div class="container retangulo">
+        <div class="row">
+            <div class="col-6 text-start text-dark">
+                <img src="../img/Icons/support_agent_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Central de Atendimento
+            </div>
+            <div class="col-6 text-end">
+                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+            </div>
+        </div>
+    </div></a>
+    <a href="#" class="text1"><div class="container retangulo">
+        <div class="row">
+            <div class="col-6 text-start text-dark">
+                <img src="../img/Icons/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Logout
+            </div>
+            <div class="col-6 text-end">
+                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+            </div>
+        </div>
+    </div></a>
     <!-- Fim Minha Conta (container) -->
 
     <!-- Inicio Footer -->

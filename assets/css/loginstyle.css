@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+/* Início NavBar */
+.logo{
+    width: 130px;
+    transition: all linear 160ms;
+}
+
+.logo:hover{
+    transform: scale(1.05);
+}
+
+.navnavbar{
+    background-color: #FFF1E0;
+    height: 120px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+}
+
+.searchfield{
+    width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(59, 32, 11, 0.3);
+    color: black;
+    padding: 15px;
+}
+
+.searchfield:focus{
+    border: none;
+    text-decoration: none;
+    outline: none;
+}
+
+.searchiconfield{
+    position: absolute;
+    margin-left: -35px;
+    margin-top: 7px;
+    width: 30px;
+    height: 30px;
+}
+
+.searchicon{
+    width: 24px;
+    height: 24px;
+}
+
+.person{
+    width: 30px;
+    height: 30px;
+    margin-top: -1px;
+    transition: all linear 160ms;
+}
+
+.person:hover{
+    transform: scale(1.05);
+}
+
+.menu{
+    transition: all linear 160ms;
+    width: 30px;
+    height: 30px;
+}
+
+.menu:hover{
+    transform: scale(1.05);
+}
+
+.menutext{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.dropdown-item:hover{
+    background-color: rgba(59, 32, 11, 0.3);
+    color: #FFF1E0;
+}
+
+.dropdown-item2{
+    background-color: rgba(59, 32, 11, 0.3);
+    color: white;
+}
+
+.dropdown-item2:hover{
+    background-color: #3B200B;
+}
+
+.dropdown-menu{
+    margin-left: -70px;
+    background-color: #FFF1E0;
+    width: 180px;
+}
+
+.shoppingbag{
+    transition: all linear 160ms;
+    margin-top: -4px;
+    width: 30px;
+    height: 30px;
+}
+
+.shoppingbag:hover{
+    transform: scale(1.05);
+}
+/* Fim NavBar */
+
+/* Início BreadCrumb */
+.breadcrumb1{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.breadcrumb1:hover{
+    color: #3B200B;
+}
+
+.breadcrumbcurrent{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+/* Fim BreadCrumb */
+
+/* Início Logo */
+.containerlogo{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logomaior {
+    padding: 20px;
+    width: 246px;
+    height: 238px;
+}
+
+.entrar {
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+}
+
+.insira_as_inf{
+    color: black;
+    margin-top: -10px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+/* Fim Logo */
+
+/* Início Forms */
+.entrar {
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+}
+
+.insira_as_inf{
+    margin-top: -10px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.forms {
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    justify-self: center;
+}
+
+input[type=email] {
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    width: 500px;
+    padding: 10px;
+}
+
+input[type=password] {
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    width: 500px;
+    padding: 10px;
+}
+
+.infprimaria {
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.infsecundaria {
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 14px;
+}
+
+a.infsecundaria:link {
+    text-decoration: none;
+}
+
+.botoes {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btnconfirmar {
+    color: #FFF1E0;
+    background-color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 236px;
+    height: 60px;
+}
+
+.btnconfirmar:hover {
+    transform: scale(1.05);
+}
+
+.btnvoltar {
+    color: black;
+    background-color: white;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    margin-right: 20px;
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 236px;
+    height: 60px;
+}
+
+.btnvoltar:hover {
+    transform: scale(1.05);
+}
+
+button[type=submit] {
+    height: 60px;
+    width: 239px;
+}
+
+.naotemconta {
+    text-align: center;
+    padding-top: 20px;
+}
+/* Fim Forms */
+
+/* Início Footer */
+.nav2{
+    background-color: #FFF1E0;
+    height: 310px;
+    box-shadow: 0px -4px 4px rgba(59, 32, 11, 0.2);
+}
+
+.footertitle{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    color: #3B200B;
+}
+
+.divfooterdesc{
+    margin-left: -50px;
+}
+
+.footerdesc{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footerdesc:hover{
+    cursor: pointer;
+    color: rgba(59, 32, 11, 0.7);
+}
+
+.recebanovidades{
+    position: absolute;
+    border: 1px solid rgba(59, 32, 11, 0.2);
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+}
+
+.recebanovidades:focus{
+    outline: none;
+}
+
+.copyright{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.copyrighttitle{
+    color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    margin-top: -37px;
+}
+/* Fim Footer */

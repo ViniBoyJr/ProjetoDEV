@@ -1,0 +1,429 @@
+/* Início importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+/* Fim importação de fontes */
+
+/* Início NavBar */
+.logo{
+    width: 130px;
+    transition: all linear 160ms;
+}
+
+.logo:hover{
+    transform: scale(1.05);
+}
+
+.navnavbar{
+    background-color: #FFF1E0;
+    height: 120px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+}
+
+.searchfield{
+    width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(59, 32, 11, 0.3);
+    color: black;
+    padding: 15px;
+}
+
+.searchfield:focus{
+    border: none;
+    text-decoration: none;
+    outline: none;
+}
+
+.searchiconfield{
+    position: absolute;
+    margin-left: -35px;
+    margin-top: 7px;
+    width: 30px;
+    height: 30px;
+}
+
+.searchicon{
+    width: 24px;
+    height: 24px;
+}
+
+.person{
+    width: 30px;
+    height: 30px;
+    margin-top: -1px;
+    transition: all linear 160ms;
+}
+
+.person:hover{
+    transform: scale(1.05);
+}
+
+.menu{
+    transition: all linear 160ms;
+    width: 30px;
+    height: 30px;
+}
+
+.menu:hover{
+    transform: scale(1.05);
+}
+
+.menutext{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.dropdown-item:hover{
+    background-color: rgba(59, 32, 11, 0.3);
+    color: #FFF1E0;
+}
+
+.dropdown-item2{
+    background-color: rgba(59, 32, 11, 0.3);
+    color: white;
+}
+
+.dropdown-item2:hover{
+    background-color: #3B200B;
+}
+
+.dropdown-menu{
+    margin-left: -70px;
+    background-color: #FFF1E0;
+    width: 180px;
+}
+
+.shoppingbag{
+    transition: all linear 160ms;
+    margin-top: -4px;
+    width: 30px;
+    height: 30px;
+}
+
+.shoppingbag:hover{
+    transform: scale(1.05);
+}
+/* Fim NavBar */
+
+/* Início Retorno */
+.return{
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+
+h1{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.campaign{
+    width: 25px;
+    height: 25px;
+}
+/* Fim Retorno */
+
+/* Início BreadCrumb */
+.breadcrumb1{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.breadcrumb1:hover{
+    color: #3B200B;
+}
+
+.breadcrumbcurrent{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+/* Fim BreadCrumb */
+
+/*Inicio Container Produto*/
+.imgproduto{
+    width: 300px;
+    height: 350px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+}
+
+h1{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.favorito{
+    transition: all linear 160ms;
+    width: 24px;
+    height: 24px;
+}
+
+.favorito:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+h2{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.descricao{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.precoantigo{
+    text-decoration: line-through;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.preconovo{
+    font-size: 25px;
+    margin-top: -15px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.quantidade{
+    width: 45px;
+    height: 45px;
+    text-align: end;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: black;
+}
+
+.btnaddcart {
+    color: #000000;
+    background-color: #ffffff;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    transition: all linear 160ms;
+    width: 260px;
+    height: 60px;
+    font-size: 16px;
+}
+
+.btnaddcart:hover {
+    transform: scale(1.05);
+}
+
+.btncomprar {
+    color: #FFF1E0;
+    background-color: rgba(59, 32, 11);
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    margin-right: 20px;
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 260px;
+    height: 60px;
+}
+
+.btncomprar:hover {
+    transform: scale(1.05);
+}
+
+.avaliar{
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 2px;
+    color: #FFF1E0;
+    width: 250px;
+    height: 40px;
+    background-color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 8px;
+    transition: all linear 160ms;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+}
+
+.avaliar:hover{
+    transform: scale(1.01);
+}
+
+.progresso{
+    width: 190px;
+    justify-self: center;
+    justify-content: center;
+}
+
+.avaliartext{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+/* Fim Container Produto */
+
+/* Início Footer */
+.nav2{
+    background-color: #FFF1E0;
+    height: 310px;
+    box-shadow: 0px -4px 4px rgba(59, 32, 11, 0.2);
+}
+
+.footertitle{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    color: #3B200B;
+}
+
+.divfooterdesc{
+    margin-left: -50px;
+}
+
+.footerdesc{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footerdesc:hover{
+    cursor: pointer;
+    color: rgba(59, 32, 11, 0.7);
+}
+
+.recebanovidades{
+    position: absolute;
+    border: 1px solid rgba(59, 32, 11, 0.2);
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+}
+
+.recebanovidades:focus{
+    outline: none;
+}
+
+.copyright{
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.copyrighttitle{
+    color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    margin-top: -37px;
+}
+/* Fim Footer */
+
+/*
+.containerproduto{
+    background-color: #FFF1E0;
+    justify-self: center;
+}
+
+.descricao{
+    text-align: center;
+}
+
+Fim Imagem Produto
+
+Botoes
+.btnadccar{
+    color: #FFF1E0;
+    background-color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 236px;
+    height: 60px;
+    align-items: center;
+    text-align: center;
+}
+.btncomprar{
+    color: black;
+    background-color: white;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    margin-right: 20px;
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 236px;
+    height: 60px;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+*/

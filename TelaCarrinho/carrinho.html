@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/carrinho.css">
+    <link rel="icon" href="../img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
+    <title>Seu Carrinho de Compras - NC Bolos</title>
+</head>
+<body>
+    <!-- Início NavBar-->
+    <nav class="navbar navnavbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-4" href="../index.html"><img src="../img/Logo/NC-Bolos - Menor.png" class="logo"></a>
+            <div class="container text-center">
+                <form method="POST" class="mx-3 d-none d-lg-inline-block">   
+                    <input type="text" class="searchfield">
+                    <i class="searchiconfield">
+                        <img src="../img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon">
+                    </i>
+                </form>
+            </div>
+        </div>
+        <div class="mx-4">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="#"><img src="../img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../Telas Conta/login.html">Entrar</a></li>
+                        <li class="menutext"><a class="dropdown-item text-center" href="../Telas Conta/cadastro.html">Cadastrar</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="menutext"><a class="dropdown-item" href="#"><img src="../img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="#"><img src="../img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="#"><img src="../img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="#"><img src="../img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../Telas Conta/login.html"><img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./carrinho.html"><img src="../img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim NavBar --> 
+
+    <!-- Início Div Promoções -->
+    <div class="novidades">
+        <br><br><h1>Seu Carrinho<img src="../img/Icons/shopping_bag_40dp_000000_FILL0_wght400_GRAD0_opsz40.png" class="mx-2 sale" width="30px" height="30px"></h1>
+    </div>
+    <!-- Fim Div Promoções -->
+
+    <!-- Início Produtos -->
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-end">
+                <img src="../img/Products/Imagem 1.png" class="imgproduto">
+            </div>
+            <div class="col-4 text-center align-content-center">
+                <h1>Nome do Produto</h1>
+                <div><br>
+                    <h2 class="preconovo">R$ 00,00</h2>
+                </div>
+            </div>
+            <div class="col-4 align-content-center">
+                <img src="../img/Icons/close_40dp_000000_FILL0_wght400_GRAD0_opsz40.png" class="remove">
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-end">
+                <img src="../img/Products/Imagem 2.png" class="imgproduto">
+            </div>
+            <div class="col-4 text-center align-content-center">
+                <h1>Nome do Produto 2</h1>
+                <div><br>
+                    <h2 class="preconovo">R$ 00,00</h2>
+                </div>
+            </div>
+            <div class="col-4 align-content-center">
+                <img src="../img/Icons/close_40dp_000000_FILL0_wght400_GRAD0_opsz40.png" class="remove">
+            </div>
+        </div>
+        <br><br><div>
+            <h1>Total</h1>
+        </div>
+    </div>
+    <!-- Fim Produtos -->
+
+    <!-- Inicio Footer -->
+    <br><nav class="nav nav2 d-mb-block">
+        <div class="container">
+            <br><ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <p class="footertitle text-start">REDES SOCIAS</p>
+                    <div class="text-start">
+                        <p><a href="#"><img src="../img/Icons/instagram.png" width="24px" height="24px"></a><a href="#"><img src="../img/Icons/facebook.png" class="mx-2" width="24px" height="24px"></a></p>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <p class="footertitle text-start">INFORMAÇÃO</p>
+                    <div class="text-start">
+                        <p><a href="#" class="footerdesc">Perguntas Frequentes</a></p>
+                        <p><a href="#" class="footerdesc">Devolução e Trocas</a></p>
+                        <p><a href="#" class="footerdesc">Termos de Serviço</a></p>
+                        <p><a href="#" class="footerdesc">Política de Reembolso</a></p>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <p class="footertitle text-start">EMPRESA</p>
+                    <div class="text-start">
+                        <p><a href="#" class="footerdesc">Contato</a></p>
+                        <p><a href="#" class="footerdesc">Termos e Condições</a></p>
+                        <p><a href="#" class="footerdesc">Política de Privacidade</a></p>
+                    </div>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <p class="footertitle text-sm-start">RECEBA AS NOVIDADES</p>
+                    <div class="text-start">
+                        <div>
+                            <label for="formGroupExampleInput" class="form-label"></label>
+                            <input type="text" class="recebanovidades text-sm-start" id="formGroupExampleInput" placeholder="Seu E-mail">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <br><p class="copyright text-start">© 2025 Nova Code</p>
+                <p class="copyrighttitle text-sm-center d-none d-md-block">Nova Code Brasil - CNPJ: 000.000.000/0000-00</p>
+                <br><p class="copyrighttitle text-start d-md-none">Nova Code Brasil - CNPJ: 000.000.000/0000-00</p>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim Footer -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="../assets/js/scriptcarrinho.js"></script>
+</html>

@@ -37,5 +37,4 @@ function addProductToCart(event) {
 
     const tableBody = document.querySelector("row")
     tableBody.append(newCartProduct)
-    console.log(tableBody)
 }

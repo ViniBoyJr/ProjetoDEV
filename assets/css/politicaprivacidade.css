@@ -144,74 +144,23 @@ h1{
     font-weight: 600;
     font-style: normal;
 }
+
+.campaign{
+    width: 30px;
+    height: 30px;
+}
 /* Fim Minha Conta */
 
-/* Início Minha Conta (container) */
-h2{
-    color: black;
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 20px;
-}
-
-h3{
-    color: black;
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 18px;
-}
-
-.quadrado{
-    width: 700px;
-    height: 120px;
-    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
-    border: 2px solid rgba(59, 32, 11, 0.2);
-    align-content: center;
-}
-
-.items{
-    height: 116px;
-    align-content: center;
-}
-
-.items:hover{
-    background-color: #f3f3f3;
-    cursor: pointer;
-}
-
+/* Início Politica */
 .descricao{
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-size: 15px;
+    text-align: justify;
 }
-
-.retangulo{
-    width: 700px;
-    height: 70px;
-    align-content: center;
-}
-
-.retangulo:hover{
-    background-color: #f3f3f3;
-    cursor: pointer;
-}
-
-a.text1:link{
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 15px;
-    text-decoration: none;
-    color: black;
-}
-/* Início Minha Conta (container) */
+/* Início Politica */
 
 /* Início Footer */
 .nav2{

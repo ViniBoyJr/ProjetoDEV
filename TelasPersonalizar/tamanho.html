@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/personalizar.css">
+    <link rel="stylesheet" href="../assets/css/tamanho.css">
     <link rel="icon" href="../img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Personalizar - NC Bolos</title>
+    <title>Defina o peso do bolo - Personalizar | NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -63,7 +63,8 @@
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Personalizar</li>
+                <li class="breadcrumb-item"><a href="../TelasMenu/personalizar.html" class="breadcrumb1">Personalizar</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Defina o peso do bolo</li>
             </ol>
         </nav>
     </div>
@@ -71,17 +72,65 @@
 
     <!-- Início Div Personalizar -->
     <div class="novidades">
-        <h1>Personalizar<img src="../img/Icons/bolo-de-casamento.png" class="mx-2 icon" width="30px" height="30px"></h1>
+        <h1><br>Personalizar<img src="../img/Icons/bolo-de-casamento.png" class="mx-2 icon" width="30px" height="30px"></h1>
     </div>
     <!-- Fim Div Personalizar -->
 
     <!-- Personalizar -->
-    <div class="container"> 
+    <div class="container">
         <div class="campoescolhadiv">
-            <br><br><img src="../img/Icons/bolo.png" width="100px" height="100px">
-            <p class="infprimaria"><br><br>Faça o bolo do seu jeito!</p>
-            <br><div class="botoes">
-                <a href="../TelasPersonalizar/tamanho.html"><button type="button" class="btnconfirmar">COMEÇAR</button></a>
+            <p class="infprimaria">Defina o peso do bolo</p>
+            <div class="row" id="seila">
+                <div class="col-4">
+                    <p class="infsecundaria">Pequeno - 1 KG</p>
+                    <label class="form-check-label" for="gridRadios1">
+                        <div class="imgescolha align-content-center">
+                            <img src="../img/Icons/bolo-de-casamento.png" width="40px" height="40px">
+                        </div>
+                        <input type="radio" name="gridRadios" id="gridRadios1" value="option1">
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <p class="infsecundaria">Médio - 1,5 KG</p>
+                    <label class="form-check-label" for="gridRadios2">
+                        <div class="imgescolha align-content-center">
+                            <img src="../img/Icons/bolo-de-casamento.png" width="70px" height="70px">
+                        </div>
+                        <input type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                    </label>
+                </div>
+
+                <div class="col-4">
+                    <p class="infsecundaria">Grande - 2 KG</p>
+                    <label class="form-check-label" for="gridRadios3">
+                        <div class="imgescolha align-content-center">
+                            <img src="../img/Icons/bolo-de-casamento.png" width="100px" height="100px">
+                        </div>
+                        <input type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Erro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Por favor, selecione um tamanho para o bolo.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btnfechar" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="botoes">
+                <button type="button" class="btnconfirmar" id="btnProximo" data-bs-toggle="modal" data-bs-target="#exampleModal">PRÓXIMO</button>
             </div>
         </div>
     </div>
@@ -134,4 +183,5 @@
     <!-- Fim Footer -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="../assets/js/scripttamanho.js"></script>
 </html>

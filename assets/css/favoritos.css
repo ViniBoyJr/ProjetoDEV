@@ -130,7 +130,7 @@
 }
 /* Fim BreadCrumb */
 
-/* Início Div Novidades */
+/* Início Div Favoritos */
 .novidades{
     align-items: center;
     justify-content: center;
@@ -145,84 +145,35 @@ h1{
     font-style: normal;
 }
 
-.icon{
-    margin-top: -2px;
+.campaign{
+    width: 30px;
+    height: 30px;
 }
-/* Fim Div Personalizar */
+/* Fim Div Favoritos */
 
-/* Início Personalizar */
-.campoescolhadiv{
-    height: 400px;
-    align-content: center;
-    justify-items: center;
-    text-align: center;
-}
-
-.imgescolha{
-    border: 2px solid #3B200B;
-    border-radius: 10px;
-    width: 150px;
-    height: 150px;
-}
-
-.infprimaria {
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 16px;
-}
-
-.infsecundaria {
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 14px;
-}
-
-input[type="radio"]{
-    accent-color: #3b200b;
-}
-
-label{
-    cursor: pointer;
-}
-
-.botoes {
-    padding-top: 50px;
+/* Início Favoritos */
+.favoritos{
+    margin-top: 200px;
+    margin-bottom: 200px;
     justify-content: center;
-    align-items: center;
     text-align: center;
 }
 
-.btnconfirmar {
-    color: #FFF1E0;
-    background-color: #3B200B;
+.descricao{
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
-    font-size: 20px;
-    transition: all linear 160ms;
-    width: 236px;
-    height: 60px;
+    font-size: 15px;
+    color: #7e7e7e;
 }
-
-.btnconfirmar:hover {
-    transform: scale(1.05);
-}
-/* Fim Personalizar */
+/* Fim Favoritos */
 
 /* Início Footer */
 .nav2{
     background-color: #FFF1E0;
     height: 310px;
     box-shadow: 0px -4px 4px rgba(59, 32, 11, 0.2);
-    margin-top: 50px;
 }
 
 .footertitle{

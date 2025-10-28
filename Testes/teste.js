@@ -1,18 +1,11 @@
-const removeProductButtons = document.getElementsByClassName("remove")
-for (var i = 0; i < removeProductButtons.length; i++) {
-    removeProductButtons[i].addEventListener("click", function(event) {
-        event.target.parentElement.parentElement.remove()
-    })
-}
-
 const addToCartButtons = document.getElementsByClassName("btnaddcart")
 for (var i = 0; i < addToCartButtons.length; i++) {
     addToCartButtons[i].addEventListener("click", addProductToCart)
 }
 
-/*function addProductToCart(event) {
+function addProductToCart(event) {
     const button = event.target
-    const productInfos = button.closest(".container")button.parentElement.parentElement.parentElement.parentElement*
+    const productInfos = button.closest(".container")/*button.parentElement.parentElement.parentElement.parentElement*/
     const productImage = productInfos.getElementsByClassName("imgproduto")[0].src
     const productTitle = productInfos.getElementsByTagName("h1")[1].innerText
     const productPrice = productInfos.getElementsByClassName("preconovo")[0].innerText
@@ -36,4 +29,4 @@ for (var i = 0; i < addToCartButtons.length; i++) {
     const tableBody = document.querySelector(".container .row")
     tableBody.append(newCartProduct)
     console.log(tableBody)
-}*/
+}

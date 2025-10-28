@@ -215,6 +215,25 @@ label{
 .btnconfirmar:hover {
     transform: scale(1.05);
 }
+
+.btnfechar{
+    color: #FFF1E0;
+    background-color: #3B200B;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+}
+
+.btnfechar:hover{
+    color: rgb(212, 212, 212);
+}
 /* Fim Personalizar */
 
 /* Início Footer */

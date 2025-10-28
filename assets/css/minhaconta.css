@@ -164,7 +164,7 @@ h3{
     color: black;
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
     font-size: 18px;
 }
@@ -187,12 +187,13 @@ h3{
     cursor: pointer;
 }
 
-.descricao{
+a.descricao:link{
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-size: 15px;
+    text-decoration: none;
 }
 
 .retangulo{

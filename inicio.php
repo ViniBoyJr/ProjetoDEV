@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['login_nome'])) {
+    header("Location: ./telasconta/login.html");
+    exit();
+}
+//Armazena o nome do usuario
+$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,7 +24,7 @@
     <!-- Início NavBar-->
     <nav class="navbar navnavbar navbar-expand navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand mx-4" href="./index.html"><img src="./assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
+            <a class="navbar-brand mx-4" href="./inicio.php"><img src="./assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
             <div class="container text-center">
                 <form method="POST" class="mx-3 d-none d-lg-inline-block">   
                     <input type="text" class="searchfield">
@@ -28,25 +40,20 @@
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="#"><img src="./assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <h2><?php echo "Olá, " . $nome_usuario . "!"; ?></h2>
+                    <a class="nav-link" href="./telasmenu/minhaconta.php">
                         <img src="./assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="./telasconta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="./telasconta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="./assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/personalizar.html"><img src="./assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/novidades.html"><img src="./assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/promocoes.html"><img src="./assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/bolosprontos.html"><img src="./assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/minhaconta.html"><img src="./assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/personalizar.php"><img src="./assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/novidades.php"><img src="./assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/promocoes.php"><img src="./assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/bolosprontos.php"><img src="./assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="./telasmenu/minhaconta.php"><img src="./assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
@@ -61,16 +68,16 @@
     <!-- Início Navs & Tabs -->
     <br><br class="d-none d-md-block"><ul class="nav nav-pills nav-fill">
         <li class="nav-item d-none d-md-block">
-            <a href="./telasmenu/personalizar.html"><button type="submit" class="btnnavtab">Personalizar</button></a>
+            <a href="./telasmenu/personalizar.php"><button type="submit" class="btnnavtab">Personalizar</button></a>
         </li>
         <li class="nav-item d-none d-md-block">
-            <a href="./telasmenu/novidades.html"><button type="submit" class="btnnavtab">Novidades</button></a>
+            <a href="./telasmenu/novidades.php"><button type="submit" class="btnnavtab">Novidades</button></a>
         </li>
         <li class="nav-item d-none d-lg-block">
-            <a href="./telasmenu/promocoes.html"><button type="submit" class="btnnavtab">Promoções</button></a>
+            <a href="./telasmenu/promocoes.php"><button type="submit" class="btnnavtab">Promoções</button></a>
         </li>
         <li class="nav-item d-none d-xxl-block">
-            <a href="./telasmenu/bolosprontos.html"><button type="submit" class="btnnavtab">Bolos Prontos</button></a>
+            <a href="./telasmenu/bolosprontos.php"><button type="submit" class="btnnavtab">Bolos Prontos</button></a>
         </li>
     </ul>
     <!-- Fim Navs & Tabs -->
@@ -122,7 +129,7 @@
     <div class="container">
     <br><br><div class="row justify-content-center justify-content-md-between">
         <div class="card produto" style="width: 18rem;">
-            <a href="./telasprodutos/produto1.html"><img src="./assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="./telasprodutos/produto1.php"><img src="./assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 1</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -134,7 +141,7 @@
 
     <!-- Início Card 2 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="./telasprodutos/produto2.html"><img src="./assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="./telasprodutos/produto2.php"><img src="./assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 2</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -146,7 +153,7 @@
 
     <!-- Início Card 3 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="./telasprodutos/produto3.html"><img src="./assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="./telasprodutos/produto3.php"><img src="./assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 3</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -158,7 +165,7 @@
 
     <!-- Início Card 4 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="./telasprodutos/produto4.html"><img src="./assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="./telasprodutos/produto4.php"><img src="./assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 4</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -194,7 +201,7 @@
                     <p class="footertitle text-start">EMPRESA</p>
                     <div class="text-start">
                         <p><a href="#" class="footerdesc">Contato</a></p>
-                        <p><a href="#" class="footerdesc">Termos e Condições</a></p>
+                        <p><a href="./telasmenu/termosecondicoes.php" class="footerdesc">Termos e Condições</a></p>
                         <p><a href="#" class="footerdesc">Política de Privacidade</a></p>
                     </div>
                 </li>

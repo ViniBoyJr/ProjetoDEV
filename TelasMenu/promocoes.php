@@ -1,18 +1,30 @@
+<?php
+session_start();
+// Verifica se o usuário está logado
+if (!isset($_SESSION['login_nome'])) {
+    header("Location: ../telasconta/login.html");
+    exit();
+}
+//Armazena o nome do usuario
+$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/recheio2.css">
+    <link rel="stylesheet" href="../assets/css/promoções.css">
     <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Defina o segundo recheio do bolo - Personalizar | NC Bolos</title>
+    <title>Promoções - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
     <nav class="navbar navnavbar navbar-expand navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand mx-4" href="../index.html"><img src="../assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
+            <a class="navbar-brand mx-4" href="../inicio.php"><img src="../assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
             <div class="container text-center">
                 <form method="POST" class="mx-3 d-none d-lg-inline-block">   
                     <input type="text" class="searchfield">
@@ -28,25 +40,20 @@
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                    <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
+                    <a class="nav-link" href="./minhaconta.php">
+                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../telasconta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="../telasconta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.html"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.html"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.html"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.html"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.html"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.php"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.php"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.php"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.php"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.php"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
@@ -62,65 +69,71 @@
     <br><br><div class="container">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item"><a href="../telasmenu/personalizar.html" class="breadcrumb1">Personalizar</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/tamanho.html" class="breadcrumb1">Defina o peso do bolo</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/massa.html" class="breadcrumb1">Defina a massa do bolo</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio1.html" class="breadcrumb1">Defina o recheio do bolo</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Defina o segundo recheio do bolo</li>
+                <li class="breadcrumb-item"><a href="../inicio.php" class="breadcrumb1">Início</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Promoções</li>
             </ol>
         </nav>
     </div>
     <!-- Fim BreadCrumb -->
 
-    <!-- Início Div Personalizar -->
+    <!-- Início Div Novidades -->
     <div class="novidades">
-        <h1><br>Personalizar<img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2 icon" width="30px" height="30px"></h1>
+        <h1>Promoções<img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2 sale" width="24px" height="24px"></h1>
     </div>
-    <!-- Fim Div Personalizar -->
+    <!-- Fim Div Novidades -->
 
-    <!-- Personalizar -->
+    <!-- Início Card 1 -->
     <div class="container">
-        <div class="campoescolhadiv">
-            <p class="infprimaria">Defina o segundo recheio do bolo (opcional)</p>
-            <div class="row" id="seila">
-                <div class="col-4">
-                    <p class="infsecundaria">Brigadeiro</p>
-                    <label class="form-check-label" for="gridRadios1">
-                        <div class="imgescolha align-content-center">
-                            <img src="../assets/img/Personalizar/Recheio2/recheio-de-brigadeiro-para-bolo.jpg" width="130px" height="130px">
-                        </div>
-                        <input type="radio" name="gridRadios" id="gridRadios1" value="option1">
-                    </label>
-                </div>
-
-                <div class="col-4">
-                    <p class="infsecundaria">Ovomaltine</p>
-                    <label class="form-check-label" for="gridRadios2">
-                        <div class="imgescolha align-content-center">
-                            <img src="../assets/img/Personalizar/Recheio2/Receita-de-Recheio-de-Ovomaltine-para-bolo-de-pote.png" width="130px" height="130px">
-                        </div>
-                        <input type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                    </label>
-                </div>
-
-                <div class="col-4">
-                    <p class="infsecundaria">Morango</p>
-                    <label class="form-check-label" for="gridRadios3">
-                        <div class="imgescolha align-content-center">
-                            <img src="../assets/img/Personalizar/Recheio2/recheio-morango-bolo-trufa.png" width="130px" height="130px">
-                        </div>
-                        <input type="radio" name="gridRadios" id="gridRadios3" value="option3">
-                    </label>
-                </div>
+    <br><br><div class="row justify-content-center justify-content-md-between">
+        <div class="card produto" style="width: 18rem;">
+            <a href="../telasprodutos/produto1.html"><img src="../assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
+            <div class="card-body">
+                <h5 class="card-title">Nome do Produto 1</h5>
+                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text precoantes">R$ 00,00</p>
+                <p class="card-text preconovo">R$ 00,00</p>
             </div>
+        </div>
+    <!-- Fim -->
 
-            <div class="botoes">
-                <a href="./cobertura.html"><button type="button" class="btnconfirmar" id="btnProximo" data-bs-toggle="modal" data-bs-target="#exampleModal">PRÓXIMO</button></a>
+    <!-- Início Card 2 -->
+        <div class="card produto" style="width: 18rem;">
+            <a href="../telasprodutos/produto2.html"><img src="../assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
+            <div class="card-body">
+                <h5 class="card-title">Nome do Produto 2</h5>
+                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text precoantes">R$ 00,00</p>
+                <p class="card-text preconovo">R$ 00,00</p>
+            </div>
+        </div>
+    <!-- Fim -->
+
+    <!-- Início Card 3 -->
+        <div class="card produto" style="width: 18rem;">
+            <a href="../telasprodutos/produto3.html"><img src="../assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
+            <div class="card-body">
+                <h5 class="card-title">Nome do Produto 3</h5>
+                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text precoantes">R$ 00,00</p>
+                <p class="card-text preconovo">R$ 00,00</p>
+            </div>
+        </div>
+    <!-- Fim -->
+
+    <!-- Início Card 4 -->
+        <div class="card produto" style="width: 18rem;">
+            <a href="../telasprodutos/produto4.html"><img src="../assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
+            <div class="card-body">
+                <h5 class="card-title">Nome do Produto 4</h5>
+                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text precoantes">R$ 00,00</p>
+                <p class="card-text preconovo">R$ 00,00</p>
             </div>
         </div>
     </div>
-    <!-- Fim Personalizar -->
+    </div>
+    <br><br>
+    <!-- Fim -->
 
     <!-- Inicio Footer -->
     <nav class="nav nav2 d-mb-block">

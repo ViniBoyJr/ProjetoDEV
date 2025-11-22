@@ -1,3 +1,48 @@
+<?php
+session_start();
+// Verifica se o usuário está logado
+if (!isset($_SESSION['login_nome'])) {
+    header("Location: ../telasconta/login.html");
+    exit();
+}
+//Armazena o nome do usuario
+$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+
+// 1. Configuração do Banco de Dados
+$servername = "localhost"; // Localhost
+$username = "root";       // Usuário MySQL
+$password = "";           // Senha MySQL
+$dbname = "novacode"; // Nome do banco de dados
+$table_name2  = "login"; // Tabela de login
+
+// 2. Conexão com o Banco de Dados
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password); // Conexão com PDO
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
+
+
+$sql = $conn->prepare("SELECT login_email, login_imagem FROM $table_name2");
+$sql->execute();
+
+$linha = $sql->fetch(PDO::FETCH_ASSOC);
+
+// Inicializa variável
+// Valores padrão caso nada seja encontrado
+    $imagem = "/novacode/assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png";
+
+    if ($linha) {
+        if (!empty($linha["login_imagem"])) {
+            $imagem = $linha["login_imagem"];
+        }
+    }
+
+} catch (PDOException $e) {
+    die("Erro de Conexão: " . $e->getMessage()); // Erro de conexão
+}
+
+$conn = null;
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,19 +50,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/configuracoes.css">
-    <link rel="icon" href="../img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
+    <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
     <title>Configurações - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
     <nav class="navbar navnavbar navbar-expand navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand mx-4" href="../index.html"><img src="../img/Logo/NC-Bolos - Menor.png" class="logo"></a>
+            <a class="navbar-brand mx-4" href="../inicio.php"><img src="../assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
             <div class="container text-center">
                 <form method="POST" class="mx-3 d-none d-lg-inline-block">   
                     <input type="text" class="searchfield">
                     <i class="searchiconfield">
-                        <img src="../img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon">
+                        <img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon">
                     </i>
                 </form>
             </div>
@@ -26,31 +71,26 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="#"><img src="../img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
+                        <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
+                    <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
+                    <a class="nav-link" href="./minhaconta.php">
+                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
+                    </a>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                        <img src="../assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../TelasConta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="../TelasConta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext"><a class="dropdown-item" href="../TelasMenu/personalizar.html"><img src="../img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../TelasMenu/novidades.html"><img src="../img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../TelasMenu/promocoes.html"><img src="../img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../TelasMenu/bolosprontos.html"><img src="../img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../TelasMenu/minhaconta.html"><img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.php"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.php"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.php"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.php"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.php"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../TelaCarrinho/carrinho.html"><img src="../img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -62,8 +102,8 @@
     <br><br><div class="container">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item"><a href="../TelasMenu/minhaconta.html" class="breadcrumb1">Minha Conta</a></li>
+                <li class="breadcrumb-item"><a href="../inicio.php" class="breadcrumb1">Início</a></li>
+                <li class="breadcrumb-item"><a href="../telasmenu/minhaconta.php" class="breadcrumb1">Minha Conta</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Configurações</li>
             </ol>
         </nav>
@@ -72,49 +112,49 @@
 
     <!-- Início Configurações -->
     <div class="novidades">
-        <h1>Configurações<img src="../img/Icons/settings_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" class="mx-2 icon"></h1>
+        <h1>Configurações<img src="../assets/img/Icons/settings_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" class="mx-2 icon"></h1>
     </div>
     <!-- Fim Configurações -->
 
     <!-- Início Configurações (container) -->
     <br>
-    <a href="./editarconta.html" class="text1"><div class="container retangulo">
+    <a href="./editarconta.php" class="text1"><div class="container retangulo">
         <div class="row">
             <div class="col-6 text-start text-dark text-dark">
-                <img src="../img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Meu Perfil
+                <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Meu Perfil
             </div>
             <div class="col-6 text-end">
-                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <img src="../assets/img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
             </div>
         </div>
     </div></a>
     <a href="#" class="text1"><div class="container retangulo">
         <div class="row">
             <div class="col-6 text-start text-dark">
-                <img src="../img/Icons/side_navigation_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Mudar Tema
+                <img src="../assets/img/Icons/side_navigation_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Mudar Tema
             </div>
             <div class="col-6 text-end">
-                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <img src="../assets/img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
             </div>
         </div>
     </div></a>
-    <a href="./termosecondicoes.html" class="text1"><div class="container retangulo">
+    <a href="./termosecondicoes.php" class="text1"><div class="container retangulo">
         <div class="row">
             <div class="col-6 text-start text-dark">
-                <img src="../img/Icons/list_alt_check_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Termos e Condições
+                <img src="../assets/img/Icons/list_alt_check_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">&nbsp&nbsp&nbsp&nbsp Termos e Condições
             </div>
             <div class="col-6 text-end">
-                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <img src="../assets/img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
             </div>
         </div>
     </div></a>
-    <a href="#" class="text1"><div class="container retangulo">
+    <a href="./logout.php" class="text1"><div class="container retangulo">
         <div class="row">
             <div class="col-6 text-start text-dark">
-                <img src="../img/Icons/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Logout
+                <img src="../assets/img/Icons/logout_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">&nbsp&nbsp&nbsp&nbsp Logout
             </div>
             <div class="col-6 text-end">
-                <img src="../img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <img src="../assets/img/Icons/chevron_right_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
             </div>
         </div>
     </div></a>
@@ -128,7 +168,7 @@
                 <li class="nav-item">
                     <p class="footertitle text-start">REDES SOCIAS</p>
                     <div class="text-start">
-                        <p><a href="#"><img src="../img/Icons/instagram.png" width="24px" height="24px"></a><a href="#"><img src="../img/Icons/facebook.png" class="mx-2" width="24px" height="24px"></a></p>
+                        <p><a href="#"><img src="../assets/img/Icons/instagram.png" width="24px" height="24px"></a><a href="#"><img src="../assets/img/Icons/facebook.png" class="mx-2" width="24px" height="24px"></a></p>
                     </div>
                 </li>
                 <li class="nav-item">

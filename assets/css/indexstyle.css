@@ -18,6 +18,10 @@
     box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
 }
 
+.navbar-nav{
+    align-items: center;
+}
+
 .searchfield{
     width: 400px;
     height: 40px;
@@ -50,7 +54,6 @@
 .person{
     width: 30px;
     height: 30px;
-    margin-top: -1px;
     transition: all linear 160ms;
 }
 
@@ -104,6 +107,17 @@
 
 .shoppingbag:hover{
     transform: scale(1.05);
+}
+
+h2{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+    width: 100px;
+    margin-top: 10px;
+    margin-right: -30px;
 }
 /* Fim NavBar */
 

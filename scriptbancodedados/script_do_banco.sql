@@ -6,12 +6,14 @@ $password = "";
 $dbname = "novacode";
 $table1_name = "login";
 $table2_name = "cadastro";
-$table3_name = "produtos";
-$table4_name = "movimentacoes"
+$table3_name = "personalizar";
+$table4_name = "produtos";
+$table5_name = "movimentacoes"
 */
 
 /*Criando o Schema*/
 CREATE SCHEMA `novacode` ;
+USE novacode;
 
 /*Criando a tabela de login*/
 CREATE TABLE `novacode`.`login` (
@@ -25,7 +27,7 @@ CREATE TABLE `novacode`.`login` (
     
   SELECT * FROM `novacode`.`login`;
   
-  /*Criando a tabela de cadastro*/ /* Criar ainda */
+  /*Criando a tabela de cadastro*/
   CREATE TABLE `novacode`.`cadastro` (
   `cadastro_id` INT AUTO_INCREMENT PRIMARY KEY,
   `cadastro_nome` VARCHAR(45) NOT NULL,
@@ -35,12 +37,29 @@ CREATE TABLE `novacode`.`login` (
   `cadastro_imagem` VARCHAR(255) DEFAULT '/novacode/assets/img/Icons/Ellipse'
   );
   
-  INSERT INTO cadastro (cadastro_nome, cadastro_sobrenome, cadastro_email, cadastro_senha)
-  VALUES ('teste', 'teste', 'teste@gmail.com', '123');
   SELECT * FROM cadastro;  
-  USE novacode;
+  /*INSERT INTO cadastro (cadastro_nome, cadastro_sobrenome, cadastro_email, cadastro_senha)
+  VALUES ('teste', 'teste', 'teste@gmail.com', '123');*/
   
-  CREATE TABLE `novacode`.`produtos` (
+  /*Criando a tabela de bolos personalizados*/
+  CREATE TABLE `novacode`.`personalizar` (
+  `personalizar_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `personalizar_peso` VARCHAR(45) NOT NULL,
+  `personalizar_massa` VARCHAR(45) NOT NULL,
+  `personalizar_recheio1` VARCHAR(45),
+  `personalizar_recheio2` VARCHAR(45),
+  `personalizar_cobertura` VARCHAR(45),
+  `personalizar_complemento` VARCHAR(45),
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  SELECT * FROM personalizar;
+  /*DROP TABLE personalizar;*/
+  
+  
+  
+  
+  /*CREATE TABLE `novacode`.`produtos` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo_produto VARCHAR(50) UNIQUE NOT NULL,
     nome_produto VARCHAR(255) NOT NULL,
@@ -53,10 +72,10 @@ CREATE TABLE `novacode`.`login` (
     descricao TEXT,
     ingredientes TEXT,
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+);*/
 
 /*Populando a tabela produtos*/
-INSERT INTO `novacode`.`produtos` (
+/*INSERT INTO `novacode`.`produtos` (
     codigo_produto,
     nome_produto,
     quantidade,
@@ -82,4 +101,4 @@ VALUES
         'Massa de chololate com cobertura de chocolate'
     );
     
-    SELECT * FROM `produtos`; 
+    SELECT * FROM `produtos`; */

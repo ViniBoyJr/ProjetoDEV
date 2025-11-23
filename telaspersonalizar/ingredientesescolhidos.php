@@ -1,3 +1,74 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['login_nome'])) {
+    header("Location: ./telasconta/login.html");
+    exit();
+}
+//Armazena o nome do usuario
+$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+
+// 1. Configuração do Banco de Dados
+$servername = "localhost"; // Localhost
+$username = "root";       // Usuário MySQL
+$password = "";           // Senha MySQL
+$dbname = "novacode"; // Nome do banco de dados
+$table3_name  = "personalizar"; // Tabela de login
+
+// 2. Conexão com o Banco de Dados
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password); // Conexão com PDO
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
+
+    $id = $_SESSION['personalizar_id'];
+    $sql = "SELECT personalizar_peso, personalizar_massa, personalizar_recheio1, personalizar_recheio2, personalizar_cobertura, personalizar_complemento
+                        FROM $table3_name
+                        WHERE personalizar_id = :id";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $linha = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Inicializa variável
+// Valores padrão caso nada seja encontrado
+    $peso = "Peso não econtrado";
+    $massa = "Massa não encontrada";
+    $recheio1 = "Recheio1 não econtrado";
+    $recheio2 = "Recheio2 não econtrado";
+    $cobertura = "Cobertura não encontrada";
+    $complemento = "Complemento não econtrado";
+
+
+    if ($linha) {
+        if (!empty($linha["personalizar_peso"])) {
+            $peso = $linha["personalizar_peso"];
+        }
+        if (!empty($linha["personalizar_massa"])) {
+            $massa = $linha["personalizar_massa"];
+        }
+        if (!empty($linha["personalizar_recheio1"])) {
+            $recheio1 = $linha["personalizar_recheio1"];
+        }
+        if (!empty($linha["personalizar_recheio2"])) {
+            $recheio2 = $linha["personalizar_recheio2"];
+        }
+        if (!empty($linha["personalizar_cobertura"])) {
+            $cobertura = $linha["personalizar_cobertura"];
+        }
+        if (!empty($linha["personalizar_complemento"])) {
+            $complemento = $linha["personalizar_complemento"];
+        }
+    }
+
+} catch (PDOException $e) {
+    die("Erro de Conexão: " . $e->getMessage()); // Erro de conexão
+}
+
+$conn = null;
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,7 +83,7 @@
     <!-- Início NavBar-->
     <nav class="navbar navnavbar navbar-expand navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand mx-4" href="../index.html"><img src="../assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
+            <a class="navbar-brand mx-4" href="../inicio.php"><img src="../assets/img/Logo/NC-Bolos - Menor.png" class="logo"></a>
             <div class="container text-center">
                 <form method="POST" class="mx-3 d-none d-lg-inline-block">   
                     <input type="text" class="searchfield">
@@ -28,25 +99,20 @@
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                    <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
+                    <a class="nav-link" href="./minhaconta.php">
+                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../telasconta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="../telasconta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.html"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.html"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.html"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.html"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.html"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.php"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.php"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.php"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.php"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.php"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
@@ -62,10 +128,10 @@
     <br><br><div class="container">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio1.html" class="breadcrumb1">Defina o recheio do bolo</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio2.html" class="breadcrumb1">Defina o segundo recheio do bolo</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/cobertura.html" class="breadcrumb1">Defina a cobertura do bolo</a></li>
-                <li class="breadcrumb-item"><a href="../telaspersonalizar/complemento.html" class="breadcrumb1">Defina um complemento para o bolo</a></li>
+                <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio1.php" class="breadcrumb1">Defina o recheio do bolo</a></li>
+                <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio2.php" class="breadcrumb1">Defina o segundo recheio do bolo</a></li>
+                <li class="breadcrumb-item"><a href="../telaspersonalizar/cobertura.php" class="breadcrumb1">Defina a cobertura do bolo</a></li>
+                <li class="breadcrumb-item"><a href="../telaspersonalizar/complemento.php" class="breadcrumb1">Defina um complemento para o bolo</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Seu bolo está pronto!</li>
             </ol>
         </nav>
@@ -84,7 +150,7 @@
             <div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Peso do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($peso); ?></option>
                     <option>Pequeno - 1 KG</option>
                     <option>Médio - 1,5 KG</option>
                     <option>Grande - 2 KG</option>
@@ -94,7 +160,7 @@
             <br><br><div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Massa do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($massa); ?></option>
                     <option>Baunilha</option>
                     <option>Chocolate</option>
                     <option>Cenoura</option>
@@ -104,7 +170,7 @@
             <br><br><div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Recheio do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($recheio1); ?></option>
                     <option>Brigadeiro</option>
                     <option>Ovomaltine</option>
                     <option>Morango</option>
@@ -114,7 +180,7 @@
             <br><br><div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Recheio secundário do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($recheio2); ?></option>
                     <option>Brigadeiro</option>
                     <option>Ovomaltine</option>
                     <option>Morango</option>
@@ -124,7 +190,7 @@
             <br><br><div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Cobertura do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($cobertura); ?></option>
                     <option>Chocolate</option>
                     <option>Maracujá</option>
                     <option>Morango</option>
@@ -134,7 +200,7 @@
             <br><br><div class="col-md-4 text-start divselecionar">
                 <label for="inputState" class="form-label infprimaria">Complemento do bolo:</label>
                 <br><select id="inputState" class="infsecundaria camposelecionar">
-                    <option selected>Selecionado*</option>
+                    <option selected><?= htmlspecialchars($complemento); ?></option>
                     <option>Granulado de Chocolate</option>
                     <option>Granulado Colorido</option>
                     <option>Chocoball</option>
@@ -142,7 +208,7 @@
             </div>
 
             <div class="botoes">
-                <a href="#"><button type="button" class="btnconfirmar" id="btnProximo" data-bs-toggle="modal" data-bs-target="#exampleModal">TUDO CERTO</button></a>
+                <a href="#"><button type="button" class="btnconfirmar" id="btnProximo" data-bs-toggle="modal" data-bs-target="#exampleModal">TUDO CERTO!</button></a>
             </div>
         </div>
     </div>

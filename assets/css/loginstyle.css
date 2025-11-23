@@ -16,6 +16,10 @@
     box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
 }
 
+.navbar-nav{
+    align-items: center;
+}
+
 .searchfield{
     width: 400px;
     height: 40px;

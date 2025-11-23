@@ -21,13 +21,13 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
 
 
-$sql = $conn->prepare("SELECT login_email, login_imagem 
-                       FROM $table_name2
-                       WHERE login_nome = :login_nome");
+    $sql = $conn->prepare("SELECT login_email, login_imagem 
+                        FROM $table_name2
+                        WHERE login_nome = :login_nome");
 
-$sql->bindParam(':login_nome', $_SESSION['login_nome']);
-$sql->execute();
-$linha = $sql->fetch(PDO::FETCH_ASSOC);
+    $sql->bindParam(':login_nome', $_SESSION['login_nome']);
+    $sql->execute();
+    $linha = $sql->fetch(PDO::FETCH_ASSOC);
 
 // Inicializa variável
 // Valores padrão caso nada seja encontrado

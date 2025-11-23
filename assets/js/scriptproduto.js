@@ -1,6 +1,6 @@
 // Caminhos das imagens
-const imagem1 = '../img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png';
-const imagem2 = '../img/Icons/favoritoselected.png';
+const imagem1 = '../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png';
+const imagem2 = '../assets/img/Icons/favoritoselected.png';
 
 // Estado atual
 let imagemAtual = 1;

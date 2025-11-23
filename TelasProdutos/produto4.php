@@ -6,8 +6,22 @@ if (!isset($_SESSION['login_nome'])) {
     exit();
 }
 //Armazena o nome do usuario
-$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+//$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
+$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
 
+// Tempo limite em segundos (60 min = 3600s)
+$timeout = 3600; 
+
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+    // Tempo expirou → força logout
+    session_unset();
+    session_destroy();
+    header("Location: ../index.html");  // ou direto para a página inicial
+    exit();
+}
+
+// Atualiza o tempo da última atividade
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +83,7 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
     <br><div class="container">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
+                <li class="breadcrumb-item"><a href="../inicio.php" class="breadcrumb1">Início</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Nome do Produto 4</li>
             </ol>
         </nav>

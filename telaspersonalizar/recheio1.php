@@ -7,7 +7,22 @@ if (!isset($_SESSION['login_nome'])) {
     exit();
 }
 //Armazena o nome do usuario
-$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+//$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
+$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
+
+// Tempo limite em segundos (60 min = 3600s)
+$timeout = 3600; 
+
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+    // Tempo expirou → força logout
+    session_unset();
+    session_destroy();
+    header("Location: ../index.html");  // ou direto para a página inicial
+    exit();
+}
+
+// Atualiza o tempo da última atividade
+$_SESSION['last_activity'] = time();
 
 // 1. Configuração do Banco de Dados
 $servername = "localhost"; // Localhost
@@ -28,28 +43,42 @@ try {
 // Se clicar no botão
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (!empty($_POST['opcao'])) {
+    // ID da linha salva na sessão
+    $id = $_SESSION['personalizar_id'];
 
-        try {
+    try {
+
+        if (!empty($_POST['opcao'])) {
+
             $recheio1 = $_POST['opcao']; // valor selecionado
 
-            // ID da linha salva na sessão
-            $id = $_SESSION['personalizar_id'];
-
-            $sql = "UPDATE $table3_name SET personalizar_recheio1 = (:recheio1) WHERE personalizar_id = :id";
+            $sql = "UPDATE $table3_name 
+                    SET personalizar_recheio1 = (:recheio1) 
+                    WHERE personalizar_id = :id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':recheio1', $recheio1);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            // REDIRECIONA APÓS SALVAR NO BANCO
-            header("Location: ../telaspersonalizar/recheio2.php");
-            exit;
-            
-        } catch (PDOException $e) {
-            $mensagem = "<p style='color:red;'>Erro: " . $e->getMessage() . "</p>";
+        } else {
+
+            // Se não escolher nada → salva NULL (opcional)
+            $sql = "UPDATE $table3_name 
+                    SET personalizar_recheio1 = NULL 
+                    WHERE personalizar_id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
         }
-    } 
+
+        // REDIRECIONA APÓS SALVAR NO BANCO
+        header("Location: ../telaspersonalizar/recheio2.php");
+        exit;
+
+    } catch (PDOException $e) {
+        $mensagem = "<p style='color:red;'>Erro: " . $e->getMessage() . "</p>";
+    }
 }
 ?>
 
@@ -84,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
                     <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
-                    <a class="nav-link" href="./minhaconta.php">
+                    <a class="nav-link" href="../telasmenu/minhaconta.php">
                         <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
                     <li class="nav-item dropdown">

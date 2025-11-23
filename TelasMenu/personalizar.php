@@ -7,7 +7,8 @@ if (!isset($_SESSION['login_nome'])) {
     exit();
 }
 //Armazena o nome do usuario
-$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+//$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
+$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
 ?>
 
 <!DOCTYPE html>
@@ -41,15 +42,9 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
                     <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                    <a class="nav-link" href="./minhaconta.php">
+                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../telasconta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="../telasconta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">

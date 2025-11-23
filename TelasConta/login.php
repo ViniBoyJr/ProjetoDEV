@@ -24,7 +24,10 @@ try {
 
 // 4. Preparação da Query SQL para verificar login e senha
 // A busca é feita por email OU CPF, e a senha deve corresponder
-$sql = "SELECT login_nome FROM $table_login WHERE (login_email = :login_input OR login_cpf = :login_input) AND login_senha = :senha_input";
+$sql = "SELECT login_nome, login_email
+        FROM $table_login 
+        WHERE (login_email = :login_input OR login_cpf = :login_input) 
+        AND login_senha = :senha_input";
 
 try {
     $stmt = $conn->prepare($sql);
@@ -42,9 +45,10 @@ try {
     if ($usuario) {
         // Sucesso: Credenciais válidas
         
-        // Armazena o nome do usuário na sessão para ser exibido em index.php
+        // Armazena o nome do usuário na sessão para ser exibido em index.php 
         $_SESSION['login_nome'] = $usuario['login_nome'];
         $_SESSION['login_email'] = $usuario['login_email'];
+        $_SESSION['last_activity'] = time(); 
         
         // Redireciona para index.php
         header("Location: ../inicio.php");

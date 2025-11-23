@@ -53,7 +53,28 @@ CREATE TABLE `novacode`.`login` (
   `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
   
-  SELECT * FROM personalizar;
+   SELECT * FROM personalizar;
+  
+  /*Criando a tabela de bolos personalizados com chave estrangeira
+  CREATE TABLE `novacode`.`personalizar` (
+  `personalizar_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `login_id` INT,
+  `personalizar_peso` VARCHAR(45) NOT NULL,
+  `personalizar_massa` VARCHAR(45) NOT NULL,
+  `personalizar_recheio1` VARCHAR(45),
+  `personalizar_recheio2` VARCHAR(45),
+  `personalizar_cobertura` VARCHAR(45),
+  `personalizar_complemento` VARCHAR(45),
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  
+  -- chave estrangeira
+  CONSTRAINT fk_personalizar_login
+        FOREIGN KEY (login_id)
+        REFERENCES login(login_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+  );*/
+
   /*DROP TABLE personalizar;*/
   
   

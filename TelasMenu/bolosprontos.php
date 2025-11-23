@@ -6,8 +6,22 @@ if (!isset($_SESSION['login_nome'])) {
     exit();
 }
 //Armazena o nome do usuario
-$nome_usuario = htmlspecialchars($_SESSION['login_nome']);
+//$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
+$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
 
+// Tempo limite em segundos (60 min = 3600s)
+$timeout = 3600; 
+
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+    // Tempo expirou → força logout
+    session_unset();
+    session_destroy();
+    header("Location: ../index.html");  // ou direto para a página inicial
+    exit();
+}
+
+// Atualiza o tempo da última atividade
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +100,7 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
     <div class="container">
     <br><br><div class="row justify-content-center justify-content-md-between">
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto1.html"><img src="../assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto1.php"><img src="../assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 1</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -98,7 +112,7 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
 
     <!-- Início Card 2 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto2.html"><img src="../assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto2.php"><img src="../assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 2</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -110,7 +124,7 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
 
     <!-- Início Card 3 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto3.html"><img src="../assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto3.php"><img src="../assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 3</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
@@ -122,7 +136,7 @@ $nome_usuario = htmlspecialchars($_SESSION['login_nome']);
 
     <!-- Início Card 4 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto4.html"><img src="../assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto4.php"><img src="../assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title">Nome do Produto 4</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>

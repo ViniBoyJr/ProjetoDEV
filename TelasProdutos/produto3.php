@@ -32,7 +32,7 @@ $_SESSION['last_activity'] = time();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/produto3.css">
     <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Nome do Produto 3 - NC Bolos</title>
+    <title>Bolo Gourmet de Cenoura com Chocolate e Morango - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -71,7 +71,7 @@ $_SESSION['last_activity'] = time();
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -84,27 +84,27 @@ $_SESSION['last_activity'] = time();
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../inicio.php" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Nome do Produto 3</li>
+                <li class="breadcrumb-item active" aria-current="page">Bolo Gourmet de Cenoura com Chocolate e Morango</li>
             </ol>
         </nav>
     </div>
     <!-- Fim BreadCrumb -->
 
-    <!-- Começo Produto -->
+        <!-- Começo Produto -->
     <br>
-    <div class="container">
+    <div class="container" id="produto">
         <div class="row">
-            <h1 class="text-start d-block d-md-none">Nome do Produto 3</h1>
+            <h1 class="text-start d-block d-md-none">Bolo Gourmet de Cenoura com Chocolate e Morango</h1>
             <div class="col-md-6 text-center">
                 <img src="../assets/img/Products/Imagem 3.png" class="imgproduto">
             </div>
             <div class="col-6 d-none d-md-block text-md-start">
-                <h1>Nome do Produto 3</h1>
+                <h1>Bolo Gourmet de Cenoura com Chocolate e Morango</h1>
                 <img src="../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" class="favorito" id="imagem" onclick="trocarImagem()"><i class="descricao">&nbsp Adicionar aos favoritos</i>
                 <div class="d-none d-md-block"><br>
-                    <p class="precoantigo">R$ 00,00</p>
-                    <h2 class="preconovo">R$ 00,00</h2>
-                    <p class="descricao">R$ 00,00 á vista com desconto Pix</p>
+                    <p class="precoantigo">R$ 79,90</p>
+                    <h2 class="preconovo">R$ 69,90</h2>
+                    <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
                 </div>
                 <div>
                     <h2>Quantidade</h2>
@@ -113,22 +113,22 @@ $_SESSION['last_activity'] = time();
                     </div>
                 </div>
                 <div class="d-none d-xl-block my-4">
-                    <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="#"><button type="button" class="btncomprar mx-2">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar mx-2" id="addcart">COMPRAR</button></a>
                 </div>
                 <div class="d-none d-md-block d-xl-none my-4">
-                    <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="#"><button type="button" class="btncomprar my-2">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
                 </div>
             </div>
             <div class="text-start d-md-none">
-                <br><p class="precoantigo">R$ 00,00</p>
-                <h2 class="preconovo">R$ 00,00</h2>
-                <p class="descricao">R$ 00,00 á vista com desconto Pix</p>
+                <br><p class="precoantigo">R$ 79,90</p>
+                <h2 class="preconovo">R$ 69,90</h2>
+                <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
             </div>
             <div class="d-md-none">
-                <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                <a href="#"><button type="button" class="btncomprar my-2">COMPRAR</button></a>
+                <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
             </div>
         </div>
         <br>
@@ -311,4 +311,41 @@ $_SESSION['last_activity'] = time();
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../assets/js/scriptproduto.js"></script>
+<script>
+    document.querySelectorAll("#addcart").forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            const nome = document.querySelector(".col-md-6 ~ .col-6 h1").innerText;
+            const preco = document.querySelector(".preconovo").innerText;
+            const imagem = document.querySelector(".imgproduto").src;
+            const quantidade = parseInt(document.querySelector("#quantidade").value);
+
+            const novoProduto = {
+                nome,
+                preco,
+                imagem,
+                quantidade
+            };
+
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+            // 🔍 Verifica se o produto já existe
+            const existente = carrinho.find(item => item.nome === novoProduto.nome);
+
+            if (existente) {
+                // ✨ Se existe, soma as quantidades
+                existente.quantidade += quantidade;
+            } else {
+                // Caso contrário, adiciona como novo produto
+                carrinho.push(novoProduto);
+            }
+
+            // Salva no localStorage
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+            // Vai para o carrinho
+            window.location.href = "../telacarrinho/carrinho.php";
+        });
+    });
+</script>
 </html>

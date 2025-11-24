@@ -72,7 +72,7 @@ $_SESSION['last_activity'] = time();
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./telacarrinho/carrinho.html"><img src="./assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="./telacarrinho/carrinho.php"><img src="./assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -146,7 +146,7 @@ $_SESSION['last_activity'] = time();
         <div class="card produto" style="width: 18rem;">
             <a href="./telasprodutos/produto1.php"><img src="./assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">Nome do Produto 1</h5>
+                <h5 class="card-title">Bolo de Chocolate Gourmet</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
                 <p class="card-text precoantes">R$ 00,00</p>
                 <p class="card-text preconovo">R$ 00,00</p>

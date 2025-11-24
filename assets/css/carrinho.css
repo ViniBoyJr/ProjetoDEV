@@ -18,6 +18,10 @@
     box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
 }
 
+.navbar-nav{
+    align-items: center;
+}
+
 .searchfield{
     width: 400px;
     height: 40px;
@@ -105,6 +109,16 @@
 .shoppingbag:hover{
     transform: scale(1.05);
 }
+
+h4{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+    width: 100px;
+    margin-top: 10px;
+}
 /* Fim NavBar */
 
 /* Início Navs & Tabs */
@@ -148,6 +162,7 @@ h1{
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
+    font-size: 30px;
 }
 
 .campaign{
@@ -158,22 +173,22 @@ h1{
 
 /*Inicio Container Produto*/
 .imgproduto{
-    width: 200px;
-    height: 250px;
+    width: 100px;
+    height: 120px;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
 }
 
-h1{
+h2{
     color: black;
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    font-size: 30px;
+    font-size: 20px;
 }
 
-h2{
+h3{
     color: black;
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
@@ -209,6 +224,80 @@ h2{
     cursor: pointer;
     transform: scale(1.02);
 }
+
+.descricao{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-align: justify;
+    margin-top: 200px;
+}
+
+.quantidadetext{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.quantidade{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: black;
+    align-items: center;
+}
+
+.btnaddcart {
+    color: #000000;
+    background-color: #ffffff;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    transition: all linear 160ms;
+    width: 260px;
+    height: 60px;
+    font-size: 16px;
+}
+
+.btnaddcart:hover {
+    transform: scale(1.05);
+}
+
+.btncomprar {
+    color: #FFF1E0;
+    background-color: rgba(59, 32, 11);
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: 2px solid rgba(59, 32, 11, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
+    margin-right: 20px;
+    font-size: 20px;
+    transition: all linear 160ms;
+    width: 260px;
+    height: 60px;
+}
+
+.btncomprar:hover {
+    transform: scale(1.05);
+}
 /* Fim Container Produto */
 
 /* Início Footer */
@@ -216,7 +305,7 @@ h2{
     background-color: #FFF1E0;
     height: 310px;
     box-shadow: 0px -4px 4px rgba(59, 32, 11, 0.2);
-    margin-top: 120px;
+    margin-top: 320px;
 }
 
 .footertitle{

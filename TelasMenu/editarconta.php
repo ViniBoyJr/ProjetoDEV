@@ -95,16 +95,10 @@ $conn = null;
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
-                    <h4><?php echo "Olá, " . $nome_usuario . "!"; ?></h4>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person">
+                    <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
+                    <a class="nav-link" href="./minhaconta.php">
+                        <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="menutext dropdown-item2"><a class="dropdown-item text-center dropdown-item2" href="../telasconta/login.html">Entrar</a></li>
-                        <li class="menutext"><a class="dropdown-item text-center" href="../telasconta/cadastro.html">Cadastrar</a></li>
-                    </ul>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/img/Icons/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="menu">
@@ -118,7 +112,7 @@ $conn = null;
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>

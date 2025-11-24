@@ -69,21 +69,21 @@
     </div>
     <!-- Fim BreadCrumb -->
 
-    <!-- Começo Produto -->
+        <!-- Começo Produto -->
     <br>
-    <div class="container">
+    <div class="container" id="produto">
         <div class="row">
-            <h1 class="text-start d-block d-md-none">Nome do Produto 4</h1>
+            <h1 class="text-start d-block d-md-none">Bolo Gourmet de Chocolate Caseiro</h1>
             <div class="col-md-6 text-center">
                 <img src="../assets/img/Products/Imagem 4.png" class="imgproduto">
             </div>
             <div class="col-6 d-none d-md-block text-md-start">
-                <h1>Nome do Produto 4</h1>
+                <h1>Bolo Gourmet de Chocolate Caseiro</h1>
                 <img src="../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" class="favorito" id="imagem" onclick="trocarImagem()"><i class="descricao">&nbsp Adicionar aos favoritos</i>
                 <div class="d-none d-md-block"><br>
-                    <p class="precoantigo">R$ 00,00</p>
-                    <h2 class="preconovo">R$ 00,00</h2>
-                    <p class="descricao">R$ 00,00 á vista com desconto Pix</p>
+                    <p class="precoantigo">R$ 79,90</p>
+                    <h2 class="preconovo">R$ 69,90</h2>
+                    <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
                 </div>
                 <div>
                     <h2>Quantidade</h2>
@@ -92,22 +92,22 @@
                     </div>
                 </div>
                 <div class="d-none d-xl-block my-4">
-                    <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="#"><button type="button" class="btncomprar mx-2">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar mx-2" id="addcart">COMPRAR</button></a>
                 </div>
                 <div class="d-none d-md-block d-xl-none my-4">
-                    <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="#"><button type="button" class="btncomprar my-2">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
                 </div>
             </div>
             <div class="text-start d-md-none">
-                <br><p class="precoantigo">R$ 00,00</p>
-                <h2 class="preconovo">R$ 00,00</h2>
-                <p class="descricao">R$ 00,00 á vista com desconto Pix</p>
+                <br><p class="precoantigo">R$ 79,90</p>
+                <h2 class="preconovo">R$ 69,90</h2>
+                <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
             </div>
             <div class="d-md-none">
-                <a href="#"><button type="button" class="btnaddcart">ADICIONAR AO CARRINHO</button></a>
-                <a href="#"><button type="button" class="btncomprar my-2">COMPRAR</button></a>
+                <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
             </div>
         </div>
         <br>
@@ -290,4 +290,16 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../assets/js/scriptproduto.js"></script>
+<script>
+    // Capturar automaticamente as informações do produto
+    const dadosProduto = {
+        nome4: document.querySelector("h1").innerText.trim(),
+        preco_novo4: document.querySelector(".preconovo").innerText.trim(),
+        preco_antigo4: document.querySelector(".precoantigo").innerText.trim(),
+        imagem4: document.querySelector(".imgproduto").src
+    };
+
+    // Salvar no localStorage
+    localStorage.setItem("produto4_atual", JSON.stringify(dadosProduto));
+</script>
 </html>

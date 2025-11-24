@@ -112,7 +112,7 @@ $conn = null;
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -152,7 +152,7 @@ $conn = null;
                 <p class="my-2">Meus Pedidos</p></a>
             </div>
             <div class="col-4 text-center items">
-                <a href="./favoritos.html" class="descricao text-dark"><img src="../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png">
+                <a href="./favoritos.php" class="descricao text-dark"><img src="../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png">
                 <p class="my-2">Favoritos</p></a>
             </div>
             <div class="col-4 text-center items">

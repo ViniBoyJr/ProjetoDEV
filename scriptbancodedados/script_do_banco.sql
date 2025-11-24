@@ -22,7 +22,7 @@ CREATE TABLE `novacode`.`login` (
   `login_email` VARCHAR(255) NOT NULL,
   `login_senha` VARCHAR(45) NOT NULL,
   `login_cpf` VARCHAR(11) NOT NULL,
-  `login_imagem` VARCHAR (255) DEFAULT '/novacode/assets/img/Icons/Ellipse'
+  `login_imagem` VARCHAR (255) DEFAULT '/novacode/assets/img/Icons/perfilsemfoto.png'
 );
     
   SELECT * FROM `novacode`.`login`;
@@ -34,7 +34,7 @@ CREATE TABLE `novacode`.`login` (
   `cadastro_sobrenome` VARCHAR(45) NOT NULL,
   `cadastro_email` VARCHAR(255) NOT NULL,
   `cadastro_senha` VARCHAR(45) NOT NULL,
-  `cadastro_imagem` VARCHAR(255) DEFAULT '/novacode/assets/img/Icons/Ellipse'
+  `cadastro_imagem` VARCHAR(255) DEFAULT '/novacode/assets/img/Icons/perfilsemfoto.png'
   );
   
   SELECT * FROM cadastro;  
@@ -54,6 +54,11 @@ CREATE TABLE `novacode`.`login` (
   );
   
    SELECT * FROM personalizar;
+  
+  
+  
+  
+  
   
   /*Criando a tabela de bolos personalizados com chave estrangeira
   CREATE TABLE `novacode`.`personalizar` (

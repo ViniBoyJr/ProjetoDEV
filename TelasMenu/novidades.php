@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Verifica se o usuário está logado
 if (!isset($_SESSION['login_nome'])) {
     header("Location: ./telasconta/login.html");
@@ -72,7 +71,7 @@ $_SESSION['last_activity'] = time();
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -101,48 +100,48 @@ $_SESSION['last_activity'] = time();
     <div class="container">
     <br><br><div class="row justify-content-center justify-content-md-between">
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto1.php"><img src="../assets/img/Products/Imagem 1.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto1.php"><img id="imagem" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">Nome do Produto 1</h5>
+                <h5 class="card-title" id="nome"></h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
-                <p class="card-text precoantes">R$ 00,00</p>
-                <p class="card-text preconovo">R$ 00,00</p>
+                <p class="card-text precoantes" id="preco_antigo"></p>
+                <p class="card-text preconovo" id="preco_novo"></p>
             </div>
         </div>
     <!-- Fim -->
 
     <!-- Início Card 2 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto2.php"><img src="../assets/img/Products/Imagem 2.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto2.php"><img id="imagem2" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">Nome do Produto 2</h5>
+                <h5 class="card-title" id="nome2"></h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
-                <p class="card-text precoantes">R$ 00,00</p>
-                <p class="card-text preconovo">R$ 00,00</p>
+                <p class="card-text precoantes" id="preco_antigo2"></p>
+                <p class="card-text preconovo" id="preco_novo2"></p>
             </div>
         </div>
     <!-- Fim -->
 
     <!-- Início Card 3 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto3.php"><img src="../assets/img/Products/Imagem 3.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto3.php"><img id="imagem3" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">Nome do Produto 3</h5>
+                <h5 class="card-title" id="nome3"></h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
-                <p class="card-text precoantes">R$ 00,00</p>
-                <p class="card-text preconovo">R$ 00,00</p>
+                <p class="card-text precoantes" id="preco_antigo3"></p>
+                <p class="card-text preconovo" id="preco_novo3"></p>
             </div>
         </div>
     <!-- Fim -->
 
     <!-- Início Card 4 -->
         <div class="card produto" style="width: 18rem;">
-            <a href="../telasprodutos/produto4.php"><img src="../assets/img/Products/Imagem 4.png" class="card-img-top cardimg" alt="..."></a>
+            <a href="../telasprodutos/produto4.php"><img id="imagem4" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
-                <h5 class="card-title">Nome do Produto 4</h5>
+                <h5 class="card-title" id="nome4">s</h5>
                 <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
-                <p class="card-text precoantes">R$ 00,00</p>
-                <p class="card-text preconovo">R$ 00,00</p>
+                <p class="card-text precoantes" id="preco_antigo4"></p>
+                <p class="card-text preconovo" id="preco_novo4"></p>
             </div>
         </div>
     </div>
@@ -197,4 +196,35 @@ $_SESSION['last_activity'] = time();
     <!-- Fim Footer -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+    const produto = JSON.parse(localStorage.getItem("produto_atual"));
+    const produto2 = JSON.parse(localStorage.getItem("produto2_atual"));
+    const produto3 = JSON.parse(localStorage.getItem("produto3_atual"));
+    const produto4 = JSON.parse(localStorage.getItem("produto4_atual"));
+
+    if (produto) {
+        document.getElementById("nome").innerText = produto.nome;
+        document.getElementById("preco_novo").innerText = produto.preco_novo;
+        document.getElementById("preco_antigo").innerText = produto.preco_antigo;
+        document.getElementById("imagem").src = produto.imagem;
+    }
+    if (produto2) {
+        document.getElementById("nome2").innerText = produto2.nome2;
+        document.getElementById("preco_novo2").innerText = produto2.preco_novo2;
+        document.getElementById("preco_antigo2").innerText = produto2.preco_antigo2;
+        document.getElementById("imagem2").src = produto2.imagem2;
+    }
+    if (produto3) {
+        document.getElementById("nome3").innerText = produto3.nome3;
+        document.getElementById("preco_novo3").innerText = produto3.preco_novo3;
+        document.getElementById("preco_antigo3").innerText = produto3.preco_antigo3;
+        document.getElementById("imagem3").src = produto3.imagem3;
+    }
+    if (produto4) {
+        document.getElementById("nome4").innerText = produto4.nome4;
+        document.getElementById("preco_novo4").innerText = produto4.preco_novo4;
+        document.getElementById("preco_antigo4").innerText = produto4.preco_antigo4;
+        document.getElementById("imagem4").src = produto4.imagem4;
+    }
+</script>
 </html>

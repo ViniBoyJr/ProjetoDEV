@@ -55,7 +55,7 @@ $_SESSION['last_activity'] = time();
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
                     <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
-                    <a class="nav-link" href="./minhaconta.php">
+                    <a class="nav-link" href="../telasmenu/minhaconta.php">
                         <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
                     <li class="nav-item dropdown">
@@ -90,7 +90,7 @@ $_SESSION['last_activity'] = time();
     </div>
     <!-- Fim BreadCrumb -->
 
-        <!-- Começo Produto -->
+    <!-- Começo Produto -->
     <br>
     <div class="container" id="produto">
         <div class="row">
@@ -312,6 +312,17 @@ $_SESSION['last_activity'] = time();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../assets/js/scriptproduto.js"></script>
 <script>
+    // Capturar automaticamente as informações do produto
+    const dadosProduto = {
+        nome3: document.querySelector("h1").innerText.trim(),
+        preco_novo3: document.querySelector(".preconovo").innerText.trim(),
+        preco_antigo3: document.querySelector(".precoantigo").innerText.trim(),
+        imagem3: document.querySelector(".imgproduto").src
+    };
+
+    // Salvar no localStorage
+    localStorage.setItem("produto3_atual", JSON.stringify(dadosProduto));
+
     document.querySelectorAll("#addcart").forEach(btn => {
         btn.addEventListener("click", () => {
 
@@ -329,11 +340,11 @@ $_SESSION['last_activity'] = time();
 
             let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-            // 🔍 Verifica se o produto já existe
+            // Verifica se o produto já existe
             const existente = carrinho.find(item => item.nome === novoProduto.nome);
 
             if (existente) {
-                // ✨ Se existe, soma as quantidades
+                // Se existe, soma as quantidades
                 existente.quantidade += quantidade;
             } else {
                 // Caso contrário, adiciona como novo produto

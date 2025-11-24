@@ -9,6 +9,20 @@ if (!isset($_SESSION['login_nome'])) {
 //Armazena o nome do usuario
 //$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
 $nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
+
+// Tempo limite em segundos (60 min = 3600s)
+$timeout = 3600; 
+
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+    // Tempo expirou → força logout
+    session_unset();
+    session_destroy();
+    header("Location: ../index.html");  // ou direto para a página inicial
+    exit();
+}
+
+// Atualiza o tempo da última atividade
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +72,7 @@ $nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CA
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../telacarrinho/carrinho.html"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>

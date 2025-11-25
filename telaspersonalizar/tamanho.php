@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Início Div Personalizar -->
     <div class="novidades">
-        <h1>Personalizar<img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2 icon" width="30px" height="30px"></h1>
+        <h1><br>Personalizar<img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2 icon" width="30px" height="30px"></h1>
     </div>
     <!-- Fim Div Personalizar -->
 

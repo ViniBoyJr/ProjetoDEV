@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $massa = $_POST['opcao']; // valor selecionado
 
             // ID da linha salva na sessão
-             $id = $_SESSION['personalizar_id'];
+            $id = $_SESSION['personalizar_id'];
 
             $sql = "UPDATE $table3_name 
                     SET personalizar_massa = (:massa) 

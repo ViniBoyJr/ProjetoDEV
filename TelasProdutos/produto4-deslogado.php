@@ -1,12 +1,82 @@
+<?php
+// 1. Configuração do Banco de Dados
+$servername = "localhost"; // Localhost
+$username = "root";       // Usuário MySQL
+$password = "";           // Senha MySQL
+$dbname = "novacode"; // Nome do banco de dados
+$table4_name  = "produtos"; // Tabela produtos
+
+// 2. Conexão com o Banco de Dados
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password); // Conexão com PDO
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
+
+
+    $sql = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_preconovo, produto_precopix, produto_descricao, produto_ingredientes, produto_validade, produto_fabricacao
+                        FROM $table4_name
+                        WHERE produto_id = 4");
+
+    $sql->execute();
+    $linha = $sql->fetch(PDO::FETCH_ASSOC);
+
+// Inicializa variável
+// Valores padrão caso nada seja encontrado
+    $produto_nome = "Email não encontrado";
+    $produto_imagem = "Imagem não encontrada";
+    $produto_precoantigo = "Preço não encontrado";
+    $produto_preconovo = "Preço não encontrado";
+    $produto_precopix = "Preço não encontrado";
+    $produto_descricao = "Descrição não encontrada";
+    $produto_ingredientes = "Ingredientes não encontrados";
+    $produto_validade = "Validade não encontrada";
+    $produto_fabricacao = "Fabricação não encontrada";
+
+    if ($linha) {
+        if (!empty($linha["produto_nome"])) {
+            $produto_nome = $linha["produto_nome"];
+        }
+        if (!empty($linha["produto_imagem"])) {
+            $produto_imagem = $linha["produto_imagem"];
+        }
+        if (!empty($linha["produto_precoantigo"])) {
+            $produto_precoantigo = $linha["produto_precoantigo"];
+        }
+        if (!empty($linha["produto_preconovo"])) {
+            $produto_preconovo = $linha["produto_preconovo"];
+        }
+        if (!empty($linha["produto_precopix"])) {
+            $produto_precopix = $linha["produto_precopix"];
+        }
+        if (!empty($linha["produto_descricao"])) {
+            $produto_descricao = $linha["produto_descricao"];
+        }
+        if (!empty($linha["produto_ingredientes"])) {
+            $produto_ingredientes = $linha["produto_ingredientes"];
+        }
+        if (!empty($linha["produto_validade"])) {
+            $produto_validade = $linha["produto_validade"];
+        }
+        if (!empty($linha["produto_fabricacao"])) {
+            $produto_fabricacao = $linha["produto_fabricacao"];
+        }
+    }
+
+} catch (PDOException $e) {
+    die("Erro de Conexão: " . $e->getMessage()); // Erro de conexão
+}
+
+$conn = null;
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/produto2.css">
+    <link rel="stylesheet" href="../assets/css/produto1.css">
     <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Bolo Gourmet de Cenoura com Chocolate - NC Bolos</title>
+    <title><?= htmlspecialchars($produto_nome); ?> - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -43,9 +113,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="menutext"><a class="dropdown-item" href="../telasmenu/personalizar.html"><img src="../assets/img/Icons/bolo-de-casamento.png" class="mx-2" width="24px" height="24px">Personalizar</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades.html"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes.html"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
-                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos.html"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/novidades-deslogado.php"><img src="../assets/img/Icons/campaign_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Novidades</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/promocoes-deslogado.php"><img src="../assets/img/Icons/shoppingmode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Promoções</a></li>
+                        <li class="menutext"><a class="dropdown-item" href="../telasmenu/bolosprontos-deslogado.php"><img src="../assets/img/Icons/fatia-de-bolo.png" class="mx-2" width="24px" height="24px" width="24px" height="24px">Bolos Prontos</a></li>
                         <li class="menutext"><a class="dropdown-item" href="../telasmenu/minhaconta.html"><img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="mx-2" width="24px" height="24px">Minha Conta</a></li>
                     </ul>
                     </li>
@@ -63,7 +133,7 @@
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb1">Início</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Bolo Gourmet de Cenoura com Chocolate</li>
+                <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($produto_nome); ?></li>
             </ol>
         </nav>
     </div>
@@ -73,17 +143,17 @@
     <br>
     <div class="container" id="produto">
         <div class="row">
-            <h1 class="text-start d-block d-md-none">Bolo Gourmet de Cenoura com Chocolate</h1>
+            <h1 class="text-start d-block d-md-none"><?= htmlspecialchars($produto_nome); ?></h1>
             <div class="col-md-6 text-center">
-                <img src="../assets/img/Products/Imagem 2.png" class="imgproduto">
+                <img src="<?= htmlspecialchars($produto_imagem); ?>" class="imgproduto">
             </div>
             <div class="col-6 d-none d-md-block text-md-start">
-                <h1>Bolo Gourmet de Cenoura com Chocolate</h1>
+                <h1><?= htmlspecialchars($produto_nome); ?></h1>
                 <img src="../assets/img/Icons/favorite_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" class="favorito" id="imagem" onclick="trocarImagem()"><i class="descricao">&nbsp Adicionar aos favoritos</i>
                 <div class="d-none d-md-block"><br>
-                    <p class="precoantigo">R$ 79,90</p>
-                    <h2 class="preconovo">R$ 69,90</h2>
-                    <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
+                    <p class="precoantigo">R$ <?= htmlspecialchars($produto_precoantigo); ?></p>
+                    <h2 class="preconovo">R$ <?= htmlspecialchars($produto_preconovo); ?></h2>
+                    <p class="descricao">R$ <?= htmlspecialchars($produto_precopix); ?> á vista com desconto Pix</p>
                 </div>
                 <div>
                     <h2>Quantidade</h2>
@@ -92,22 +162,22 @@
                     </div>
                 </div>
                 <div class="d-none d-xl-block my-4">
-                    <a href="../telacarrinho/carrinho.html"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="../telacarrinho/carrinho.html"><button type="button" class="btncomprar mx-2" id="addcart">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar mx-2" id="addcart">COMPRAR</button></a>
                 </div>
                 <div class="d-none d-md-block d-xl-none my-4">
-                    <a href="../telacarrinho/carrinho.html"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
-                    <a href="../telacarrinho/carrinho.html"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
+                    <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                    <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
                 </div>
             </div>
             <div class="text-start d-md-none">
-                <br><p class="precoantigo">R$ 79,90</p>
-                <h2 class="preconovo">R$ 69,90</h2>
-                <p class="descricao">R$ 65,90 á vista com desconto Pix</p>
+                <br><p class="precoantigo">R$ <?= htmlspecialchars($produto_precoantigo); ?></p>
+                <h2 class="preconovo">R$ <?= htmlspecialchars($produto_preconovo); ?></h2>
+                <p class="descricao">R$ <?= htmlspecialchars($produto_precopix); ?> á vista com desconto Pix</p>
             </div>
             <div class="d-md-none">
-                <a href="../telacarrinho/carrinho.html"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
-                <a href="../telacarrinho/carrinho.html"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
+                <a href="#"><button type="button" class="btnaddcart" id="addcart">ADICIONAR AO CARRINHO</button></a>
+                <a href="#"><button type="button" class="btncomprar my-2" id="addcart">COMPRAR</button></a>
             </div>
         </div>
         <br>
@@ -293,13 +363,13 @@
 <script>
     // Capturar automaticamente as informações do produto
     const dadosProduto = {
-        nome2: document.querySelector("h1").innerText.trim(),
-        preco_novo2: document.querySelector(".preconovo").innerText.trim(),
-        preco_antigo2: document.querySelector(".precoantigo").innerText.trim(),
-        imagem2: document.querySelector(".imgproduto").src
+        nome4: document.querySelector("h1").innerText.trim(),
+        preco_novo4: document.querySelector(".preconovo").innerText.trim(),
+        preco_antigo4: document.querySelector(".precoantigo").innerText.trim(),
+        imagem4: document.querySelector(".imgproduto").src
     };
 
     // Salvar no localStorage
-    localStorage.setItem("produto2_atual", JSON.stringify(dadosProduto));
+    localStorage.setItem("produto4_atual", JSON.stringify(dadosProduto));
 </script>
 </html>

@@ -38,8 +38,6 @@ CREATE TABLE `novacode`.`login` (
   );
   
   SELECT * FROM cadastro;  
-  /*INSERT INTO cadastro (cadastro_nome, cadastro_sobrenome, cadastro_email, cadastro_senha)
-  VALUES ('teste', 'teste', 'teste@gmail.com', '123');*/
   
   /*Criando a tabela de bolos personalizados*/
   CREATE TABLE `novacode`.`personalizar` (
@@ -54,10 +52,87 @@ CREATE TABLE `novacode`.`login` (
   );
   
    SELECT * FROM personalizar;
-  
-  
-  
-  
+   
+   /* Criando a tabela produtos */
+   CREATE TABLE `novacode` . `produtos` (
+   `produto_id` INT AUTO_INCREMENT PRIMARY KEY,
+   `produto_nome` VARCHAR(100) NOT NULL,
+   `produto_precoantigo` VARCHAR(6) NOT NULL,
+   `produto_preconovo` VARCHAR(6) NOT NULL,
+   `produto_precopix` VARCHAR(6) NOT NULL,
+   `produto_descricao` TEXT,
+   `produto_ingredientes` TEXT,
+   `produto_quantidade` VARCHAR(20) NOT NULL,
+   `produto_validade` DATE,
+   `produto_fabricacao` DATE,
+   `produto_tamanho` VARCHAR(45)
+   );
+   
+   /*Populando a tabela produtos*/
+   INSERT INTO `novacode`.`produtos` (
+    produto_nome,
+    produto_precoantigo,
+    produto_preconovo,
+    produto_precopix,
+    produto_descricao,
+    produto_ingredientes,
+    produto_quantidade,
+    produto_validade,
+    produto_fabricacao,
+    produto_tamanho
+)
+VALUES
+    (
+        'Bolo Gourmet de Chocolate',
+        '89,90',
+        '79,90',
+        '75,90',
+        'descricao',
+        'ingredientes',
+        '3 Unidades',
+        '2025-12-10',
+        '2025-12-01',
+        'Grande - 2 KG'
+    ),
+    (
+		'Bolo Gourmet de Cenoura com Chocolate',
+        '89,90',
+        '79,90',
+        '75,90',
+        'descricao',
+        'ingredientes',
+        '2 Unidades',
+        '2025-12-10',
+        '2025-12-01',
+        'Grande - 2 KG'
+    ),
+    (
+		'Bolo Gourmet de Cenoura com Chocolate e Morango',
+        '79,90',
+        '69,90',
+        '65,90',
+        'descricao',
+        'ingredientes',
+        '1 Unidades',
+        '2025-12-10',
+        '2025-12-01',
+        'Médio - 1,5 KG'
+    ),
+    (
+		'Bolo Gourmet de Chocolate Caseiro',
+        '69,90',
+        '59,90',
+        '55,90',
+        'descricao',
+        'ingredientes',
+        '2 Unidades',
+        '2025-12-10',
+        '2025-12-01',
+        'Pequeno - 1 KG'
+    );
+   
+   SELECT * FROM produtos;
+   /*DROP TABLE produtos;*/
   
   
   /*Criando a tabela de bolos personalizados com chave estrangeira

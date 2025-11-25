@@ -52,7 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $complemento = $_POST['opcao']; // valor selecionado
 
-            $sql = "UPDATE $table3_name SET personalizar_complemento = (:complemento) WHERE personalizar_id = :id";
+            $sql = "UPDATE $table3_name 
+                    SET personalizar_complemento = (:complemento) 
+                    WHERE personalizar_id = :id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':complemento', $complemento);
             $stmt->bindParam(':id', $id);

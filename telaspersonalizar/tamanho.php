@@ -2,8 +2,8 @@
 session_start();
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['login_nome'])) {
-    header("Location: ./telasconta/login.html");
+if (!isset($_SESSION['login_id'])) {
+    header("Location: ../telasconta/login.html");
     exit();
 }
 //Armazena o nome do usuario
@@ -49,11 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $peso = $_POST['opcao']; // valor selecionado
             // login_id deve estar salvo na sessão
+            $login_id = $_SESSION['login_id'];
 
-            $sql = "INSERT INTO $table3_name (personalizar_peso) 
-                    VALUES (:peso)";
+            $sql = "INSERT INTO $table3_name (personalizar_peso, login_id) 
+                    VALUES (:peso, :login_id)";
+
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':peso', $peso);
+            $stmt->bindParam(':login_id', $login_id);
             $stmt->execute();
 
             $_SESSION['personalizar_id'] = $conn->lastInsertId();

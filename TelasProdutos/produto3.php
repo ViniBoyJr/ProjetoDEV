@@ -379,38 +379,39 @@ $conn = null;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../assets/js/scriptproduto.js"></script>
 <script>
-    document.querySelectorAll("#addcart").forEach(btn => {
-        btn.addEventListener("click", () => {
+document.querySelectorAll("#addcart").forEach(btn => {
+    btn.addEventListener("click", () => {
 
-            const nome = document.querySelector(".col-md-6 ~ .col-6 h1").innerText;
-            const preco = document.querySelector(".preconovo").innerText;
-            const imagem = document.querySelector(".imgproduto").src;
-            const quantidade = parseInt(document.querySelector("#quantidade").value);
+        const nome = document.querySelector(".col-md-6 ~ .col-6 h1").innerText;
+        const preco = document.querySelector(".preconovo").innerText;
+        const imagem = document.querySelector(".imgproduto").src;
+        const quantidade = parseInt(document.querySelector("#quantidade").value);
 
-            const novoProduto = {
-                produto_id: 3,   // ✔️ envia para o carrinho
-                personalizar_id: null,   // ✔️ deixa claro que não é personalizado
-                nome,
-                preco,
-                imagem,
-                quantidade
-            };
+        const novoProduto = {
+            produto_id: 3,   // ✔️ envia para o carrinho
+            personalizar_id: null,   // ✔️ deixa claro que não é personalizado
+            nome,
+            preco,
+            imagem,
+            quantidade
+        };
 
-            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-            const existente = carrinho.find(item => item.produto_id === produtoId);
+        // Corrigido: verifica pelo id do novo produto
+        const existente = carrinho.find(item => item.produto_id === novoProduto.produto_id);
 
-            if (existente) {
-                existente.quantidade += quantidade;
-            } else {
-                carrinho.push(novoProduto);
-            }
+        if (existente) {
+            existente.quantidade += quantidade;
+        } else {
+            carrinho.push(novoProduto);
+        }
 
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-            // Vai para o carrinho
-            window.location.href = "../telacarrinho/carrinho.php";
-        });
+        // Vai para o carrinho
+        window.location.href = "../telacarrinho/carrinho.php";
     });
+});
 </script>
 </html>

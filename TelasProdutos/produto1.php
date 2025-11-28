@@ -16,7 +16,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.html");  // ou direto para a página inicial
+    header("Location: ../index.php");  // ou direto para a página inicial
     exit();
 }
 
@@ -34,7 +34,6 @@ $table4_name  = "produtos"; // Tabela produtos
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password); // Conexão com PDO
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
-
 
     $sql = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_preconovo, produto_precopix, produto_descricao, produto_ingredientes, produto_validade, produto_fabricacao
                         FROM $table4_name
@@ -380,40 +379,39 @@ $conn = null;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../assets/js/scriptproduto.js"></script>
 <script>
-    document.querySelectorAll("#addcart").forEach(btn => {
-        btn.addEventListener("click", () => {
+document.querySelectorAll("#addcart").forEach(btn => {
+    btn.addEventListener("click", () => {
 
-            const nome = document.querySelector(".col-md-6 ~ .col-6 h1").innerText;
-            const preco = document.querySelector(".preconovo").innerText;
-            const imagem = document.querySelector(".imgproduto").src;
-            const quantidade = parseInt(document.querySelector("#quantidade").value);
+        const nome = document.querySelector(".col-md-6 ~ .col-6 h1").innerText;
+        const preco = document.querySelector(".preconovo").innerText;
+        const imagem = document.querySelector(".imgproduto").src;
+        const quantidade = parseInt(document.querySelector("#quantidade").value);
 
-            const novoProduto = {
-                nome,
-                preco,
-                imagem,
-                quantidade
-            };
+        const novoProduto = {
+            produto_id: 1,   // ✔️ envia para o carrinho
+            personalizar_id: null,   // ✔️ deixa claro que não é personalizado
+            nome,
+            preco,
+            imagem,
+            quantidade
+        };
 
-            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-            // Verifica se o produto já existe
-            const existente = carrinho.find(item => item.nome === novoProduto.nome);
+        // Corrigido: verifica pelo id do novo produto
+        const existente = carrinho.find(item => item.produto_id === novoProduto.produto_id);
 
-            if (existente) {
-                // Se existe, soma as quantidades
-                existente.quantidade += quantidade;
-            } else {
-                // Caso contrário, adiciona como novo produto
-                carrinho.push(novoProduto);
-            }
+        if (existente) {
+            existente.quantidade += quantidade;
+        } else {
+            carrinho.push(novoProduto);
+        }
 
-            // Salva no localStorage
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-            // Vai para o carrinho
-            window.location.href = "../telacarrinho/carrinho.php";
-        });
+        // Vai para o carrinho
+        window.location.href = "../telacarrinho/carrinho.php";
     });
+});
 </script>
 </html>

@@ -42,13 +42,14 @@ SELECT * FROM cadastro;
 /*Criando a tabela de bolos personalizados com chave estrangeira*/
 CREATE TABLE `novacode`.`personalizar` (
 	`personalizar_id` INT AUTO_INCREMENT PRIMARY KEY,
-	`login_id` INT,
+	`login_id` INT NOT NULL,
 	`personalizar_peso` VARCHAR(45) NOT NULL,
 	`personalizar_massa` VARCHAR(45) NOT NULL,
 	`personalizar_recheio1` VARCHAR(45),
 	`personalizar_recheio2` VARCHAR(45),
 	`personalizar_cobertura` VARCHAR(45),
 	`personalizar_complemento` VARCHAR(45),
+    `personalizar_preco` VARCHAR(6) NOT NULL,
 	`data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   
 	-- chave estrangeira
@@ -146,3 +147,37 @@ VALUES
     );
    
    SELECT * FROM produtos;
+   
+/* Criando a tabela pedidos */
+CREATE TABLE `novacode` . `pedidos` (
+	`pedido_id` INT AUTO_INCREMENT PRIMARY KEY,
+	`login_id` INT NOT NULL,
+    `produto_id` INT,
+    `personalizar_id` INT,  
+    `quantidade` VARCHAR(20) NOT NULL,
+    `pedido_pagamento` VARCHAR (45) NOT NULL,
+    `pedido_preco` VARCHAR(6) NOT NULL,
+    `pedido_data` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    
+    -- chave estrangeira
+	CONSTRAINT fk_pedidos_login
+		FOREIGN KEY (login_id)
+        REFERENCES login(login_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_pedidos_produto
+		FOREIGN KEY (produto_id)
+        REFERENCES produtos(produto_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_pedidos_personalizar
+		FOREIGN KEY (personalizar_id)
+        REFERENCES personalizar(personalizar_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+	
+);
+
+SELECT * FROM pedidos;

@@ -67,7 +67,7 @@ try {
     // Erro na execução da query SQL
     $mensagem_erro_db = "Erro interno do sistema ao verificar login: " . $e->getMessage();
     
-    echo "<!DOCTYPE html><html lang='pt-br'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Erro de Sistema</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'></head><body><div class='container mt-5 text-center'><div class='alert alert-danger' role='alert'>$mensagem_erro_db</div><a href='../index.html' class='btn btn-warning'>Voltar ao Login</a></div></body></html>";
+    echo "<!DOCTYPE html><html lang='pt-br'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Erro de Sistema</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'></head><body><div class='container mt-5 text-center'><div class='alert alert-danger' role='alert'>$mensagem_erro_db</div><a href='../index.php' class='btn btn-warning'>Voltar ao Login</a></div></body></html>";
 }
 
 // 8. Fecha a conexão

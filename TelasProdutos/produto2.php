@@ -16,7 +16,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.html");  // ou direto para a página inicial
+    header("Location: ../index.php");  // ou direto para a página inicial
     exit();
 }
 
@@ -34,7 +34,6 @@ $table4_name  = "produtos"; // Tabela produtos
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password); // Conexão com PDO
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
-
 
     $sql = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_preconovo, produto_precopix, produto_descricao, produto_ingredientes, produto_validade, produto_fabricacao
                         FROM $table4_name
@@ -389,6 +388,8 @@ $conn = null;
             const quantidade = parseInt(document.querySelector("#quantidade").value);
 
             const novoProduto = {
+                produto_id: 2,   // ✔️ envia para o carrinho
+                personalizar_id: null,   // ✔️ deixa claro que não é personalizado
                 nome,
                 preco,
                 imagem,
@@ -397,18 +398,14 @@ $conn = null;
 
             let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-            // Verifica se o produto já existe
-            const existente = carrinho.find(item => item.nome === novoProduto.nome);
+            const existente = carrinho.find(item => item.produto_id === produtoId);
 
             if (existente) {
-                // Se existe, soma as quantidades
                 existente.quantidade += quantidade;
             } else {
-                // Caso contrário, adiciona como novo produto
                 carrinho.push(novoProduto);
             }
 
-            // Salva no localStorage
             localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
             // Vai para o carrinho

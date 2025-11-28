@@ -19,6 +19,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redireciona o usuário para a página inicial
-header("Location: ../index.html");
+header("Location: ../index.php");
 exit();
 ?>

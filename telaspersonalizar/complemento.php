@@ -17,7 +17,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.html");  // ou direto para a página inicial
+    header("Location: ../index.php");  // ou direto para a página inicial
     exit();
 }
 
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="row">
             <form method="POST">
                 <p class="infprimaria my-2">Defina um complemento para o bolo (opcional)</p>
-                <label for="opcaoa" class="text-center mx-2 my-2">
+                <label for="opcaoa" class="text-center my-2">
                     <p class="infsecundaria">Granulado de Chocolate</p>
                     <div class="col-4 cols">
                         <img src="../assets/img/Personalizar/Complemento/1504347020d4885bdd8.png" width="130px" height="130px">

@@ -16,7 +16,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.html");  // ou direto para a página inicial
+    header("Location: ../index.php");  // ou direto para a página inicial
     exit();
 }
 
@@ -96,7 +96,7 @@ $_SESSION['last_activity'] = time();
         <div id="acoes-carrinho" class="d-none my-4 text-center">
             <p id="total-carrinho" class="text-center my-4 descricao">Total: R$ 0,00</p>
             <a href="../inicio.php"><button type="button" class="btnaddcart my-4">CONTINUAR COMPRANDO</button></a>
-            <a href="#"><button type="button" class="btncomprar mx-2">FINALIZAR PEDIDO</button></a>
+            <a href="#"><button id="btn-finalizar" type="button" class="btncomprar mx-2">FINALIZAR PEDIDO</button></a>
         </div>
     </div>
     <!-- Fim Produtos -->
@@ -214,6 +214,46 @@ function remover(index){
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
     carregarCarrinho();
 }
+
+// Finalizar pedido
+document.getElementById("btn-finalizar").addEventListener("click", function() {
+
+    const carrinho = JSON.stringify(JSON.parse(localStorage.getItem("carrinho")) || []);
+
+    if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio.");
+        return;
+    }
+
+    // Envia para o PHP
+    fetch("../telacarrinho/salvar_pedido.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "carrinho=" + encodeURIComponent(carrinho)
+    })
+    .then(res => res.text())
+    .then(resposta => {
+        if (resposta.trim() === "OK") {
+
+            // Limpa o carrinho
+            localStorage.removeItem("carrinho");
+
+            // Atualiza tela
+            document.getElementById("lista-carrinho").innerHTML = "";
+            document.getElementById("acoes-carrinho").remove();
+            document.getElementById("msg-vazio").classList.remove("d-none");
+
+            alert("Pedido enviado com sucesso!");
+
+        } else {
+            console.error(resposta);
+            alert("Erro ao enviar pedido.");
+        }
+    });
+
+});
 
 // Atualiza total geral do carrinho
 function atualizarTotal() {

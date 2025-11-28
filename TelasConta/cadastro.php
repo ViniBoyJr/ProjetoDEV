@@ -67,7 +67,7 @@ if (isset($_POST['cadastrar'])) {
         
         //após o cadastro, exibir a mensagem e redirecionar para o menu
         //Podemos trocar por uma página a linha abaixo
-        //echo "<!DOCTYPE html><html lang='pt-br'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Sucesso</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'></head><body><div class='container mt-5'><div class='alert alert-success' role='alert'>Cadastrado com sucesso!</div><a href='../index.html' class='btn btn-primary'>Voltar à página inicial</a></div></body></html>";
+        //echo "<!DOCTYPE html><html lang='pt-br'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Sucesso</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'></head><body><div class='container mt-5'><div class='alert alert-success' role='alert'>Cadastrado com sucesso!</div><a href='../index.php' class='btn btn-primary'>Voltar à página inicial</a></div></body></html>";
         header("Location: ../inicio.php");
         //header("refresh:2;url=../index.php");
     } catch (PDOException $e) {

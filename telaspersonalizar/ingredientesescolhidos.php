@@ -17,7 +17,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.html");  // ou direto para a página inicial
+    header("Location: ../index.php");  // ou direto para a página inicial
     exit();
 }
 
@@ -92,7 +92,7 @@ $conn = null;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/ingredientesescolhidos.css">
     <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Seu bolo está pronto - Personalizar | NC Bolos</title>
+    <title>Ingredientes escolhidos - Personalizar | NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -147,7 +147,7 @@ $conn = null;
                 <li class="breadcrumb-item"><a href="../telaspersonalizar/recheio2.php" class="breadcrumb1">Defina o segundo recheio do bolo</a></li>
                 <li class="breadcrumb-item"><a href="../telaspersonalizar/cobertura.php" class="breadcrumb1">Defina a cobertura do bolo</a></li>
                 <li class="breadcrumb-item"><a href="../telaspersonalizar/complemento.php" class="breadcrumb1">Defina um complemento para o bolo</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Seu bolo está pronto!</li>
+                <li class="breadcrumb-item active" aria-current="page">Ingredientes escolhidos</li>
             </ol>
         </nav>
     </div>
@@ -276,4 +276,33 @@ $conn = null;
     <!-- Fim Footer -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+    // Quando clicar em "TUDO CERTO!"
+    document.getElementById("btnProximo").addEventListener("click", function () {
+
+    // Pegando o ID do bolo personalizado vindo da sessão PHP
+    let personalizarId = <?php echo json_encode($_SESSION['personalizar_id']); ?>;
+
+    // Cria o item personalizado
+    const itemPersonalizado = {
+        nome: "Bolo personalizado",
+        preco: "R$ 130,00",
+        quantidade: 1,
+        imagem: "../assets/img/Icons/bolo-de-casamento2.png", 
+        personalizar_id: personalizarId
+    };
+
+    // Pega o carrinho existente
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    // Adiciona ao carrinho
+    carrinho.push(itemPersonalizado);
+
+    // Salva novamente
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+    // Redireciona para o carrinho
+    window.location.href = "../telacarrinho/carrinho.php";
+});
+</script>
 </html>

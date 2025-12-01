@@ -8,7 +8,7 @@ $table1_name = "login";
 $table2_name = "cadastro";
 $table3_name = "personalizar";
 $table4_name = "produtos";
-$table5_name = "movimentacoes"
+$table5_name = "pedidos"
 */
 
 /*Criando o Schema*/
@@ -99,8 +99,14 @@ VALUES
         '89,90',
         '79,90',
         '75,90',
-        'descricao',
-        'ingredientes',
+        'Uma composição sofisticada que exalta a intensidade do cacau. Este bolo apresenta uma estrutura de massa de chocolate de alta densidade 
+        e umidade, harmonizada com um recheio e cobertura de *Brigadeiro Gourmet* de textura aveludada. A estética é marcada pela aplicação 
+        perimetral de wafer sticks de chocolate (Kit Kat), fixados por uma fita de cetim, conferindo um acabamento visualmente impactante. 
+        A finalização é realizada com um crescendo de rosetas de brigadeiro e esferas de beijinho, proporcionando um contraste sutil de sabor 
+        e uma apresentação de requinte.',
+        'Massa: Farinha de trigo refinada, cacau em pó alcalino, ovos de granja, leite integral e extrato de baunilha. Recheio e Cobertura: Leite 
+        condensado integral, creme de leite UHT, chocolate nobre (mínimo 50% cacau) e manteiga sem sal. Decoração: Barras de chocolate Kit Kat, 
+        beijinhos de coco e granulado de chocolate belga.',
         '3 Unidades',
         '2025-12-10',
         '2025-12-01',
@@ -112,8 +118,13 @@ VALUES
         '89,90',
         '79,90',
         '75,90',
-        'descricao',
-        'ingredientes',
+        'Uma releitura contemporânea do clássico bolo de cenoura, apresentado no formato Naked Cake (Bolo Desconstruído). A massa, de coloração 
+        vibrante e textura aerada, é elaborada com cenouras frescas, resultando em um sabor naturalmente adocicado. As camadas são generosamente 
+        intercaladas com um recheio denso de *Brigadeiro Gourmet, que confere estabilidade e riqueza. O topo é finalizado com uma *ganache de 
+        chocolate de alto brilho, que escorre delicadamente pelas laterais, e adornado com esferas de brigadeiro crocante, garantindo uma 
+        experiência sensorial de múltiplas texturas.',
+        'Massa: Cenouras frescas, farinha de trigo, açúcar cristal, ovos e óleo vegetal. Recheio e Cobertura: Leite condensado, creme de leite, 
+        chocolate em pó premium e manteiga. Decoração: Brigadeiros enrolados em granulado de chocolate.',
         '2 Unidades',
         '2025-12-10',
         '2025-12-01',
@@ -125,8 +136,12 @@ VALUES
         '79,90',
         '69,90',
         '65,90',
-        'descricao',
-        'ingredientes',
+        'Uma harmonização equilibrada entre a doçura da cenoura e a acidez do morango. Este bolo, com sua massa de cenoura macia, é coroado por 
+        uma Calda de Chocolate Intensa que se concentra no centro, criando o efeito "vulcão". A cobertura é complementada por uma disposição 
+        radial de morangos frescos e fatiados, que adicionam frescor e um vibrante apelo visual. A combinação da base de cenoura com a ganache 
+        de chocolate e a fruta fresca resulta em um perfil de sabor complexo e refrescante.',
+        'Massa: Cenoura fresca, farinha de trigo, açúcar, ovos e fermento químico. Cobertura: Ganache de chocolate meio amargo e creme de leite. 
+        Decoração: Morangos in natura e raspas de chocolate.',
         '1 Unidades',
         '2025-12-10',
         '2025-12-01',
@@ -138,14 +153,18 @@ VALUES
         '69,90',
         '59,90',
         '55,90',
-        'descricao',
-        'ingredientes',
+        'Representando a excelência da confeitaria tradicional, este bolo é uma celebração do sabor puro do chocolate. A massa é caracterizada por 
+        sua estrutura robusta e sabor profundo. A cobertura é uma *Ganache de Chocolate* de consistência rústica, que envolve o bolo de forma homogênea. 
+        O acabamento é realizado com a aspersão de açúcar de confeiteiro e a inclusão de chips de chocolate, conferindo um toque artesanal e sofisticado. 
+        É a escolha ideal para apreciadores de um chocolate intenso e reconfortante.',
+        'Massa: Farinha de trigo, cacau em pó, açúcar, ovos, manteiga e leite. Cobertura: Chocolate meio amargo e creme de leite. Decoração: Açúcar 
+        de confeiteiro e pedaços de chocolate.',
         '2 Unidades',
         '2025-12-10',
         '2025-12-01',
         'Pequeno - 1 KG'
     );
-   
+
    SELECT * FROM produtos;
    
 /* Criando a tabela pedidos */

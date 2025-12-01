@@ -183,16 +183,9 @@ $conn = null;
         <br>
         <div class="col-12">
             <h2>DESCRIÇÃO</h2>
-            <p class="descricao">&nbsp Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores itaque nobis reprehenderit adipisci officia minima tenetur molestiae! 
-                Saepe repellat laborum, animi ipsa molestias aliquam ex voluptatem vel qui. Eligendi sapiente dolorum sed consequuntur aperiam quam quod officiis 
-                id commodi, rerum officia doloribus quisquam suscipit praesentium totam molestiae cum iusto. Ipsam odio itaque similique quaerat tempora? Tempore 
-                modi ut, facilis quod sapiente adipisci inventore deserunt nam optio harum dignissimos fugit quaerat veritatis? Laborum velit illo adipisci id, 
-                necessitatibus repellendus a obcaecati cupiditate distinctio est veniam alias consequatur quod, deserunt hic ducimus beatae sit itaque tenetur, 
-                culpa vero! Odio adipisci non architecto.</p>
+            <p class="descricao">&nbsp <?= htmlspecialchars($produto_descricao); ?></p>
             <br><h2>INGREDIENTES</h2>
-            <p class="descricao">&nbsp Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam adipisci deleniti obcaecati maiores culpa provident fugit neque, quidem 
-                repudiandae tempora itaque! Nulla delectus nostrum, assumenda natus similique vitae, aspernatur nam fuga consectetur illum quis enim architecto modi vel saepe et 
-                distinctio. Iusto eaque molestiae ut, suscipit saepe temporibus beatae animi?</p>
+            <p class="descricao">&nbsp <?= htmlspecialchars($produto_ingredientes); ?></p>
             <br><h2 class="text-center">AVALIAÇÃO DE CLIENTES</h2>
 
             <!-- Início Estrelas (XL)-->

@@ -1,0 +1,2 @@
+Para ter uma melhor experiência e utilizar todas as funções do site, o primeiro passo é configurar o banco de dados.
+O arquivo script_do_banco.sql contém as informações para configurar o banco de dados do projeto.

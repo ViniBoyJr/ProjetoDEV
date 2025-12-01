@@ -1,27 +1,101 @@
 <?php
 session_start();
+
 // Verifica se o usuário está logado
 if (!isset($_SESSION['login_nome'])) {
     header("Location: ../telasconta/login.html");
     exit();
 }
-//Armazena o nome do usuario
-//$nome_usuario = htmlspecialchars($_SESSION['login_nome']); Antes
-$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8"); // Agora: para que a primeira letra seja sempre maiúscula
 
-// Tempo limite em segundos (60 min = 3600s)
-$timeout = 3600; 
+$nome_usuario = mb_convert_case(htmlspecialchars($_SESSION['login_nome']), MB_CASE_TITLE, "UTF-8");
 
+// Controle de sessão
+$timeout = 3600;
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
-    // Tempo expirou → força logout
     session_unset();
     session_destroy();
-    header("Location: ../index.php");  // ou direto para a página inicial
+    header("Location: ../index.php");
     exit();
 }
-
-// Atualiza o tempo da última atividade
 $_SESSION['last_activity'] = time();
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "novacode";
+
+try {
+
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+    // ---------------------------------------------------------
+    // 1️⃣ Buscar o login_id do usuário
+    // ---------------------------------------------------------
+    $sql_user = $conn->prepare("
+        SELECT login_id 
+        FROM login 
+        WHERE login_nome = :login_nome
+    ");
+
+    $sql_user->bindParam(':login_nome', $_SESSION['login_nome']);
+    $sql_user->execute();
+    $usuario = $sql_user->fetch(PDO::FETCH_ASSOC);
+
+    if (!$usuario) {
+        die("Erro: Usuário não encontrado.");
+    }
+
+    $login_id = $usuario['login_id'];
+
+
+    // ---------------------------------------------------------
+    // 2️⃣ Buscar pedidos (produto normal OU bolo personalizado)
+    // ---------------------------------------------------------
+    $sql_pedidos = $conn->prepare("
+
+        SELECT 
+            p.pedido_id,
+            p.quantidade,
+            p.pedido_pagamento,
+            p.pedido_preco,
+            p.pedido_data,
+
+            pr.produto_nome,
+            pr.produto_imagem,
+
+            pers.personalizar_peso,
+            pers.personalizar_massa,
+            pers.personalizar_recheio1,
+            pers.personalizar_recheio2,
+            pers.personalizar_cobertura,
+            pers.personalizar_complemento,
+            pers.personalizar_preco
+
+        FROM pedidos p
+
+        LEFT JOIN produtos pr 
+            ON p.produto_id = pr.produto_id
+
+        LEFT JOIN personalizar pers
+            ON p.personalizar_id = pers.personalizar_id
+
+        WHERE p.login_id = :login_id
+        ORDER BY p.pedido_data DESC
+    ");
+
+    $sql_pedidos->bindParam(':login_id', $login_id);
+    $sql_pedidos->execute();
+    $pedidos = $sql_pedidos->fetchAll(PDO::FETCH_ASSOC);
+
+
+} catch (PDOException $e) {
+    die("Erro de Conexão: " . $e->getMessage());
+}
+
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +104,9 @@ $_SESSION['last_activity'] = time();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/carrinho.css">
-    <link rel="icon" href="../img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
-    <title>Seu Carrinho de Compras - NC Bolos</title>
+    <link rel="stylesheet" href="../assets/css/meuspedidos.css">
+    <link rel="icon" href="../assets/img/Logo/NC-Bolos-Pequeno.png" type="image/x-icon">
+    <title>Meus pedidos - NC Bolos</title>
 </head>
 <body>
     <!-- Início NavBar-->
@@ -55,7 +129,7 @@ $_SESSION['last_activity'] = time();
                         <a class="nav-link" href="#"><img src="../assets/img/Icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="searchicon"></a>
                     </li>
                     <h4><?php echo "Olá, " . $nome_usuario . "!";?></h4>
-                    <a class="nav-link" href="../telasmenu/minhaconta.php">
+                    <a class="nav-link" href="./minhaconta.php">
                         <img src="../assets/img/Icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24-browm.png" class="person"> 
                     </a>
                     <li class="nav-item dropdown">
@@ -71,7 +145,7 @@ $_SESSION['last_activity'] = time();
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
+                        <a class="nav-link" href="../telacarrinho/carrinho.php"><img src="../assets/img/Icons/shopping_bag_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" class="shoppingbag"></a>
                     </li>
                 </ul>
             </div>
@@ -79,30 +153,85 @@ $_SESSION['last_activity'] = time();
     </nav>
     <!-- Fim NavBar -->
 
-    <!-- Início Div Promoções -->
-    <div class="novidades">
-        <br><br><h1>Seu Carrinho<img src="../assets/img/Icons/shopping_bag_40dp_000000_FILL0_wght400_GRAD0_opsz40.png" class="mx-2 sale" width="30px" height="30px"></h1>
+    <!-- Início BreadCrumb -->
+    <br><br><div class="container">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../inicio.php" class="breadcrumb1">Início</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Meus pedidos</li>
+            </ol>
+        </nav>
     </div>
-    <!-- Fim Div Promoções -->
+    <!-- Fim BreadCrumb -->
 
-    <!-- Início Produtos -->
+    <!-- Início Div Favoritos -->
+    <div class="novidades">
+        <h1>Meus pedidos<img src="../assets/img/Icons/article_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" class="mx-2 sale"></h1>
+    </div>
+    <!-- Fim Div Favoritos -->
+
+    <!-- Início Favoritos -->
     <div class="container">
         <div style="margin-top: 40px;">
-            <div id="lista-carrinho"></div>
-        </div>
-        <p id="msg-vazio" class="descricao d-none text-center">Você ainda não adicionou nenhum produto no carrinho.
-            <br><a href="../inicio.php"><button type="button" class="btnaddcart my-4">CONTINUAR COMPRANDO</button></a>
-        </p>
-        <div id="acoes-carrinho" class="d-none my-4 text-center">
-            <p id="total-carrinho" class="text-center my-4 descricao">Total: R$ 0,00</p>
-            <a href="../inicio.php"><button type="button" class="btnaddcart my-4">CONTINUAR COMPRANDO</button></a>
-            <a href="#"><button id="btn-finalizar" type="button" class="btncomprar mx-2">FINALIZAR PEDIDO</button></a>
+            <div id="lista-pedidos">
+                <?php if (count($pedidos) > 0): ?>
+
+                    <?php foreach ($pedidos as $pedido): ?>
+
+                        <?php
+                        // Verifica se é bolo personalizado
+                        $isPersonalizado = !empty($pedido['personalizar_peso']);
+
+                        // Se for personalizado → usa a imagem padrão
+                        $img = $isPersonalizado 
+                            ? "../assets/img/Icons/bolo-de-casamento2.png"
+                            : $pedido['produto_imagem'];
+
+                        // Nome do item
+                        $nome_item = $isPersonalizado 
+                            ? "Bolo Personalizado"
+                            : $pedido['produto_nome'];
+
+                        ?>
+
+                        <div class="container my-4">
+                            <div class="row text-center">
+
+                                <div class="col-md-4 text-end">
+                                    <img src="<?= $img ?>" class="imgproduto">
+                                </div>
+
+                                <div class="col-md-8 text-start">
+                                    <h2><?= $nome_item ?></h2>
+
+                                    <h3 class="preconovo my-2">
+                                        R$ <?= number_format($pedido['pedido_preco'], 2, ',', '.') ?>
+                                    </h3>
+
+                                    <p class="quantidadetext">
+                                        Quantidade: <?= $pedido['quantidade'] ?>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <p class="descricao text-center">Você ainda não fez nenhum pedido.</p>
+
+                <?php endif; ?>
+
+            </div>
         </div>
     </div>
-    <!-- Fim Produtos -->
+    <!-- Fim Favoritos -->
 
     <!-- Inicio Footer -->
-    <br><nav class="nav nav2 d-mb-block">
+    <br><br><nav class="nav nav2 d-mb-block">
         <div class="container">
             <br><ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
@@ -148,145 +277,4 @@ $_SESSION['last_activity'] = time();
     <!-- Fim Footer -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script>
-// Carrega o carrinho
-function carregarCarrinho() {
-    const container = document.getElementById("lista-carrinho");
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-
-    container.innerHTML = "";
-
-    carrinho.forEach((item, index) => {
-        const bloco = `
-        <div class="container my-4">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-end">
-                    <img src="${item.imagem}" class="imgproduto">
-                </div>
-                <div class="col-4 align-content-center">
-                    <h2>${item.nome}</h2>
-                    <h3 class="preconovo my-2">${item.preco}</h3>
-                    <p class="quantidadetext">Quantidade: ${item.quantidade}
-                        <button class="quantidade" style="margin-left: 10px;" onclick="alterarQuantidade(${index}, -1)">-</button>
-                        <button class="quantidade" onclick="alterarQuantidade(${index}, 1)">+</button>
-                    </p>
-                </div>
-                <div class="col-4 text-center">
-                    <img src="../assets/img/Icons/close_40dp_000000_FILL0_wght400_GRAD0_opsz40.png"
-                        class="remove" onclick="remover(${index})">
-                </div>
-            </div>
-        </div>
-        `;
-        container.innerHTML += bloco;
-    });
-
-    atualizarTotal();
-    atualizarAcoesCarrinho();
-}
-
-// Calcula subtotal de um produto
-function calcularSubtotal(item) {
-    // Remove "R$ " e converte para número
-    let precoNumero = parseFloat(item.preco.replace("R$ ", "").replace(",", "."));
-    let subtotal = precoNumero * item.quantidade;
-    return subtotal.toFixed(2).replace(".", ",");
-}
-
-// Atualiza quantidade
-function alterarQuantidade(index, valor) {
-    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
-    let item = carrinho[index];
-
-    item.quantidade += valor;
-
-    if (item.quantidade < 1) item.quantidade = 1;
-    if (item.quantidade > 20) item.quantidade = 20;
-
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    carregarCarrinho();
-}
-
-// Remove item
-function remover(index){
-    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
-    carrinho.splice(index, 1);
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    carregarCarrinho();
-}
-
-// Finalizar pedido
-document.getElementById("btn-finalizar").addEventListener("click", function() {
-
-    const carrinho = JSON.stringify(JSON.parse(localStorage.getItem("carrinho")) || []);
-
-    if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio.");
-        return;
-    }
-
-    // Envia para o PHP
-    fetch("../telacarrinho/salvar_pedido.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "carrinho=" + encodeURIComponent(carrinho)
-    })
-    .then(res => res.text())
-    .then(resposta => {
-        if (resposta.trim() === "OK") {
-
-            // Limpa o carrinho
-            localStorage.removeItem("carrinho");
-
-            // Atualiza tela
-            document.getElementById("lista-carrinho").innerHTML = "";
-            document.getElementById("acoes-carrinho").remove();
-            document.getElementById("msg-vazio").classList.remove("d-none");
-
-            alert("Compra bem-sucedida!");
-
-        } else {
-            console.error(resposta);
-            alert("Erro na compra.");
-        }
-    });
-
-});
-
-// Atualiza total geral do carrinho
-function atualizarTotal() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    let total = 0;
-
-    carrinho.forEach(item => {
-        let precoNumero = parseFloat(item.preco.replace("R$ ", "").replace(",", "."));
-        total += precoNumero * item.quantidade;
-    });
-
-    document.getElementById("total-carrinho").innerText = 
-        "Total: R$ " + total.toFixed(2).replace(".", ",");
-}
-
-// Mostra/oculta botões e mensagem
-function atualizarAcoesCarrinho() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    const divAcoes = document.getElementById("acoes-carrinho");
-    const msgVazio = document.getElementById("msg-vazio");
-
-    if (carrinho.length === 0) {
-        divAcoes.classList.add("d-none");
-        msgVazio.classList.remove("d-none");
-        document.getElementById("total-carrinho").innerText = "Total: R$ 0,00";
-    } else {
-        divAcoes.classList.remove("d-none");
-        msgVazio.classList.add("d-none");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    carregarCarrinho();
-});
-</script>
 </html>

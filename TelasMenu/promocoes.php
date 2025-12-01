@@ -36,7 +36,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Define modo de erro
 
 // Busca informações do Produto 1
-    $sql1 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_descricao
+    $sql1 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_ingredientes
                             FROM $table4_name
                             WHERE produto_id = 1");
 
@@ -49,7 +49,7 @@ try {
     $produto_imagem1 = "Imagem não encontrada";
     $produto_precoantigo1 = "Preço não encontrado";
     $produto_precopix1 = "Preço não encontrado";
-    $produto_descricao1 = "Descrição não encontrada";
+    $produto_ingredientes1 = "Ingredientes não encontrados";
 
     if ($linha1) {
         if (!empty($linha1["produto_nome"])) {
@@ -64,14 +64,14 @@ try {
         if (!empty($linha1["produto_precopix"])) {
             $produto_precopix1 = $linha1["produto_precopix"];
         }
-        if (!empty($linha1["produto_descricao"])) {
-            $produto_descricao1 = $linha1["produto_descricao"];
+        if (!empty($linha1["produto_ingredientes"])) {
+            $produto_ingredientes1 = $linha1["produto_ingredientes"];
         }
     }
 
 
 // Busca informações do Produto 2
-    $sql2 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_descricao
+    $sql2 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_ingredientes
                             FROM $table4_name
                             WHERE produto_id = 2");
 
@@ -84,7 +84,7 @@ try {
     $produto_imagem2 = "Imagem não encontrada";
     $produto_precoantigo2 = "Preço não encontrado";
     $produto_precopix2 = "Preço não encontrado";
-    $produto_descricao2 = "Descrição não encontrada";
+    $produto_ingredientes2 = "Ingredientes não encontrados";
 
     if ($linha2) {
         if (!empty($linha2["produto_nome"])) {
@@ -99,14 +99,14 @@ try {
         if (!empty($linha2["produto_precopix"])) {
             $produto_precopix2 = $linha2["produto_precopix"];
         }
-        if (!empty($linha2["produto_descricao"])) {
-            $produto_descricao2 = $linha2["produto_descricao"];
+        if (!empty($linha2["produto_ingredientes"])) {
+            $produto_ingredientes2 = $linha2["produto_ingredientes"];
         }
     }
 
 
 // Busca informações do Produto 3
-    $sql3 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_descricao
+    $sql3 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_ingredientes
                             FROM $table4_name
                             WHERE produto_id = 3");
 
@@ -119,7 +119,7 @@ try {
     $produto_imagem3 = "Imagem não encontrada";
     $produto_precoantigo3 = "Preço não encontrado";
     $produto_precopix3 = "Preço não encontrado";
-    $produto_descricao3 = "Descrição não encontrada";
+    $produto_ingredientes3 = "Ingredientes não encontrados";
 
     if ($linha3) {
         if (!empty($linha3["produto_nome"])) {
@@ -134,14 +134,14 @@ try {
         if (!empty($linha3["produto_precopix"])) {
             $produto_precopix3 = $linha3["produto_precopix"];
         }
-        if (!empty($linha3["produto_descricao"])) {
-            $produto_descricao3 = $linha3["produto_descricao"];
+        if (!empty($linha3["produto_ingredientes"])) {
+            $produto_ingredientes3 = $linha3["produto_ingredientes"];
         }
     }
 
 
 // Busca informações do Produto 4
-    $sql4 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_descricao
+    $sql4 = $conn->prepare("SELECT produto_nome, produto_imagem, produto_precoantigo, produto_precopix, produto_ingredientes
                             FROM $table4_name
                             WHERE produto_id = 4");
 
@@ -154,7 +154,7 @@ try {
     $produto_imagem4 = "Imagem não encontrada";
     $produto_precoantigo4 = "Preço não encontrado";
     $produto_precopix4 = "Preço não encontrado";
-    $produto_descricao4 = "Descrição não encontrada";
+    $produto_ingredientes4 = "Ingredientes não encontrados";
 
     if ($linha4) {
         if (!empty($linha4["produto_nome"])) {
@@ -169,8 +169,8 @@ try {
         if (!empty($linha4["produto_precopix"])) {
             $produto_precopix4 = $linha4["produto_precopix"];
         }
-        if (!empty($linha4["produto_descricao"])) {
-            $produto_descricao4 = $linha4["produto_descricao"];
+        if (!empty($linha4["produto_ingredientes"])) {
+            $produto_ingredientes4 = $linha4["produto_ingredientes"];
         }
     }
 
@@ -261,7 +261,7 @@ $conn = null;
             <a href="../telasprodutos/produto1.php"><img src="<?= htmlspecialchars($produto_imagem1); ?>" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title"><?= htmlspecialchars($produto_nome1); ?></h5>
-                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text descricao"><?= htmlspecialchars($produto_ingredientes1); ?></p>
                 <p class="card-text precoantes">R$ <?= htmlspecialchars($produto_precoantigo1); ?></p>
                 <p class="card-text preconovo">R$ <?= htmlspecialchars($produto_precopix1); ?></p>
             </div>
@@ -273,7 +273,7 @@ $conn = null;
             <a href="../telasprodutos/produto2.php"><img src="<?= htmlspecialchars($produto_imagem2); ?>" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title"><?= htmlspecialchars($produto_nome2); ?></h5>
-                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text descricao"><?= htmlspecialchars($produto_ingredientes2); ?></p>
                 <p class="card-text precoantes">R$ <?= htmlspecialchars($produto_precoantigo2); ?></p>
                 <p class="card-text preconovo">R$ <?= htmlspecialchars($produto_precopix2); ?></p>
             </div>
@@ -285,7 +285,7 @@ $conn = null;
             <a href="../telasprodutos/produto3.php"><img src="<?= htmlspecialchars($produto_imagem3); ?>" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title"><?= htmlspecialchars($produto_nome3); ?></h5>
-                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text descricao"><?= htmlspecialchars($produto_ingredientes3); ?></p>
                 <p class="card-text precoantes">R$ <?= htmlspecialchars($produto_precoantigo3); ?></p>
                 <p class="card-text preconovo">R$ <?= htmlspecialchars($produto_precopix3); ?></p>
             </div>
@@ -297,7 +297,7 @@ $conn = null;
             <a href="../telasprodutos/produto4.php"><img src="<?= htmlspecialchars($produto_imagem4); ?>" class="card-img-top cardimg" alt="..."></a>
             <div class="card-body">
                 <h5 class="card-title"><?= htmlspecialchars($produto_nome4); ?></h5>
-                <p class="card-text descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi doloremque ad ea modi sit!</p>
+                <p class="card-text descricao"><?= htmlspecialchars($produto_ingredientes4); ?></p>
                 <p class="card-text precoantes">R$ <?= htmlspecialchars($produto_precoantigo4); ?></p>
                 <p class="card-text preconovo">R$ <?= htmlspecialchars($produto_precopix4); ?></p>
             </div>

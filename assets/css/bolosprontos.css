@@ -199,6 +199,11 @@ h5{
     font-weight: 300;
     font-style: normal;
     text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* número de linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .precoantes{

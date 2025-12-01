@@ -144,7 +144,7 @@ h4{
 }
 /* Fim BreadCrumb */
 
-/* Início Novidades */
+/* Início Div Meus pedidos */
 .novidades{
     align-items: center;
     justify-content: center;
@@ -159,72 +159,66 @@ h1{
     font-style: normal;
 }
 
-.icon{
-    margin-top: -5px;
+.campaign{
+    width: 30px;
+    height: 30px;
 }
-/* Fim Novidades e Promoções */
+/* Fim Div Meus pedidos */
 
-/* Início Card */
-.produto{
-    transition: all linear 160ms;
-    border: none;
-}
-
-.produto:hover{
-    transform: scale(1.02);
-    cursor: pointer;
-}
-
-.cardimg{
+/* Início Favoritos */
+.imgproduto{
+    width: 100px;
+    height: 120px;
     border-radius: 20px;
-}
-
-h5{
-    color: #3B200B;
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
+    box-shadow: 0px 4px 4px rgba(59, 32, 11, 0.2);
 }
 
 .descricao{
-    color: black;
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* número de linhas */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.precoantes{
-    color: rgb(37, 37, 37);
-    font-family: "Lexend Deca", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    text-decoration: line-through;
-    font-size: 13px;
-    margin-top: -10px;
+    font-size: 15px;
+    color: #7e7e7e;
+    margin-top: 200px;
 }
 
 .preconovo{
+    font-size: 25px;
+    margin-top: -15px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.quantidade{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: black;
+    align-items: center;
+}
+
+h2{
     color: black;
     font-family: "Lexend Deca", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    margin-top: -20px;
     font-size: 20px;
 }
-/* Fim Card */
+/* Fim Favoritos */
 
 /* Início Footer */
 .nav2{
+    margin-top: 300px;
     background-color: #FFF1E0;
     height: 310px;
     box-shadow: 0px -4px 4px rgba(59, 32, 11, 0.2);

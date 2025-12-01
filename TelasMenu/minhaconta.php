@@ -148,7 +148,7 @@ $conn = null;
     <div class="container quadrado">
         <div class="row">
             <div class="col-4 text-center items">
-                <a href="#" class="descricao text-dark"><img src="../assets/img/Icons/article_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
+                <a href="./meuspedidos.php" class="descricao text-dark"><img src="../assets/img/Icons/article_40dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png">
                 <p class="my-2">Meus Pedidos</p></a>
             </div>
             <div class="col-4 text-center items">
